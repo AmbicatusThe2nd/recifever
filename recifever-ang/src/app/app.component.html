@@ -1,0 +1,23 @@
+<div class="placeholder" *ngIf="false">
+  <h1> Recifever is gonna be awsome </h1>
+
+<mat-slider min="1" max="100" step="1" value="50"></mat-slider>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+           placeholder="Ex. pat@example.com">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

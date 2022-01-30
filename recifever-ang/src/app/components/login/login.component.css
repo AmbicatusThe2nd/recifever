@@ -1,0 +1,30 @@
+mat-card{
+    max-width: 600px;
+    margin: 2em auto;
+    text-align: center;
+    max-height: 600px;
+    align-items: center;
+}
+
+.header{
+    text-align: center;
+}
+
+input {
+    width: 80%;
+}
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+
+  .button-row {
+    display: table-cell;
+    width: 800px;
+  }
