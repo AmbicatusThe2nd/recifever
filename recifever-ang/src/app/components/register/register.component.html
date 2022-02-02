@@ -1,1 +1,44 @@
-<p>register works!</p>
+<mat-card>
+    <mat-card-content>
+      <div class="header">
+        <h2>Login</h2>
+      </div>
+      <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. pat@example.com"
+          />
+          <mat-error
+            *ngIf="registerForm.hasError('email') && !registerForm.hasError('required')"
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="registerForm.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. pat@example.com"
+          />
+          <mat-error *ngIf="registerForm.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-flat-button color="primary">Register</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
