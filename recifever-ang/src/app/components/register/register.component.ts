@@ -20,6 +20,10 @@ export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
+    passwordRepeat: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required, Validators.min(2)]),
+    lastName: new FormControl('', [Validators.required, Validators.min(3)]),
+    dateOfBirth: new FormControl('', [Validators.required]),
   })
 
   matcher = new MyErrorStateMatcher();
