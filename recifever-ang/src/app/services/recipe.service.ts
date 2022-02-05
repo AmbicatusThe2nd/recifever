@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpResponse  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError, catchError  } from 'rxjs';
 import { Recipe } from '../models/recipe.model';
@@ -20,8 +20,8 @@ export class RecipeService {
       )
   }
 
-  getAllRecipes(): Observable<Object> | Observable<Recipe[]> {
-    return this.http.get(`${this.apiUrl}/Recipe`)
+  getAllRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/Recipe`)
   }
 
   getSpecificRecipe(id:string): Observable<Object> | Observable<Recipe[]> {
