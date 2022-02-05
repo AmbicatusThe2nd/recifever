@@ -77,3 +77,6 @@ typings/
 
 # API json files
 recefever-webapi/recefever-webapi/appsettings.json
+recefever-webapi/.vs/recefever-webapi/v17/.suo
+recefever-webapi/.vs/recefever-webapi/v17/.futdcache.v1
+recefever-webapi/.vs/recefever-webapi/DesignTimeBuild/.dtbcache.v2
