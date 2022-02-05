@@ -2,8 +2,8 @@
 {
     public enum IngredientAmount
     {
-        Cup,
-        Teaspoon,
-        TableSpoon
+        cup,
+        teaspoon,
+        tablespoon
     }
 }
