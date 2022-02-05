@@ -13,6 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
+import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -30,9 +32,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     MatCardModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
