@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<RecipeDatabaseSettings>(
     builder.Configuration.GetSection("RecefeverDatabase"));
 builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<RecipeService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
