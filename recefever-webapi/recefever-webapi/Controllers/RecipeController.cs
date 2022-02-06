@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using recefever_webapi.Services;
 using recefever_webapi.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace recefever_webapi.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class RecipeController : ControllerBase
