@@ -14,17 +14,21 @@ import { RegisterComponent } from './components/register/register.component';
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatIconModule } from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './components/home/home.component'
+import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/header/header.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import { HomeComponent } from './components/home/home.component'
     MatNativeDateModule,
     HttpClientModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [MatDatepickerModule, UserService],
   bootstrap: [AppComponent]
