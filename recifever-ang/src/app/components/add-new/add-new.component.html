@@ -1,1 +1,82 @@
-<p>add-new works!</p>
+<div class="container">
+  <div class="form-container">
+    <form [formGroup]="addNewRecipeForm" (submit)="ngOnSubmit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Title of recipe </mat-label>
+        <input matInput formControlName="title" required />
+        <mat-error
+          *ngIf="
+            addNewRecipeForm.controls.title.touched &&
+            addNewRecipeForm.controls.title.invalid
+          "
+        >
+          <span *ngIf="addNewRecipeForm.controls.title.errors?.required"
+            >This field is mandatory.</span
+          >
+          <span *ngIf="addNewRecipeForm.controls.title.errors?.maxlength"
+            >This field allows maximum of 30 characters</span
+          >
+          <span *ngIf="addNewRecipeForm.controls.title.errors?.minlength"
+            >This field allows minimum of 3 characters</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Preparation Time (minutes)</mat-label>
+        <input matInput formControlName="preparationTime" required />
+        <mat-error
+          *ngIf="
+            addNewRecipeForm.controls.preparationTime.touched &&
+            addNewRecipeForm.controls.preparationTime.invalid
+          "
+        >
+          <span
+            *ngIf="addNewRecipeForm.controls.preparationTime.errors?.required"
+            >This field is mandatory.</span
+          >
+          <span
+            *ngIf="addNewRecipeForm.controls.preparationTime.errors?.pattern"
+            >Only numbers are allowed</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Coocking Time (minutes)</mat-label>
+        <input matInput formControlName="preparationTime" required />
+        <mat-error
+          *ngIf="
+            addNewRecipeForm.controls.coockingTime.touched &&
+            addNewRecipeForm.controls.coockingTime.invalid
+          "
+        >
+          <span *ngIf="addNewRecipeForm.controls.coockingTime.errors?.required"
+            >This field is mandatory.</span
+          >
+          <span *ngIf="addNewRecipeForm.controls.coockingTime.errors?.pattern"
+            >Only numbers are allowed</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Calories</mat-label>
+        <input matInput formControlName="preparationTime" required />
+        <mat-error
+          *ngIf="
+            addNewRecipeForm.controls.calories.touched &&
+            addNewRecipeForm.controls.calories.invalid
+          "
+        >
+          <span *ngIf="addNewRecipeForm.controls.calories.errors?.required"
+            >This field is mandatory.</span
+          >
+          <span *ngIf="addNewRecipeForm.controls.calories.errors?.pattern"
+            >Only numbers are allowed</span
+          >
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit">
+        Submit recipe
+      </button>
+    </form>
+  </div>
+</div>
