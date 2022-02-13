@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="form-container">
-    <form [formGroup]="addNewRecipeForm" (submit)="ngOnSubmit()">
+  <form [formGroup]="addNewRecipeForm" (submit)="ngOnSubmit()">
+    <div class="form-container">
       <mat-form-field class="form-field" appearance="outline">
         <mat-label> Title of recipe </mat-label>
         <input matInput formControlName="title" required />
@@ -74,9 +74,59 @@
           >
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="accent" type="submit">
-        Submit recipe
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Difficulty</mat-label>
+        <mat-select formControlName="difficuilty">
+          <mat-option value="1">Easy</mat-option>
+          <mat-option value="2">Normal</mat-option>
+          <mat-option value="3">Intermediate</mat-option>
+          <mat-option value="4">Hard</mat-option>
+          <mat-option value="5">Expert</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Daily meal</mat-label>
+        <mat-select formControlName="dailyMeal">
+          <mat-option value="Breakfest">Breakfest</mat-option>
+          <mat-option value="Lunch">Lunch</mat-option>
+          <mat-option value="Dinner">Dinner</mat-option>
+          <mat-option value="Brunch">Brunch</mat-option>
+          <mat-option value="Snack">Snack</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="inline-container">
+      <mat-form-field appearance="outline">
+        <mat-label> Ingridient </mat-label>
+        <input matInput formControlName="igredient" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label> Ammount </mat-label>
+        <input matInput formControlName="amount" required />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="measurement">
+          <mat-option value="Tablespoon">Tablespoon</mat-option>
+          <mat-option value="Teaspoon">Teaspoon</mat-option>
+          <mat-option value="Cup">Cup</mat-option>
+          <mat-option value="Generally">Generally</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-mini-fab color="accent" type="button">
+        <mat-icon>plus_one</mat-icon>
       </button>
-    </form>
-  </div>
+    </div>
+    <div class="inline-fields">
+      <mat-form-field appearance="outline">
+        <mat-label> Enter steps of the recipe </mat-label>
+        <textarea  matInput class="form-field" formControlName="stepTextFrom" required ></textarea>
+      </mat-form-field>
+      <button mat-mini-fab color="accent" type="button">
+        <mat-icon>plus_one</mat-icon>
+      </button>
+    </div>
+    <button mat-raised-button color="accent" type="submit">
+      Submit recipe
+    </button>
+  </form>
 </div>

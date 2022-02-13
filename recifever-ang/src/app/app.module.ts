@@ -16,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -47,7 +48,8 @@ import { AddNewComponent } from './components/add-new/add-new.component'
     MatGridListModule,
     FlexLayoutModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [MatDatepickerModule, UserService],
   bootstrap: [AppComponent]
