@@ -83,6 +83,11 @@
           <mat-option value="4">Hard</mat-option>
           <mat-option value="5">Expert</mat-option>
         </mat-select>
+        <mat-error *ngIf="addNewRecipeForm.controls.difficuilty.touched && addNewRecipeForm.controls.difficuilty.invalid">
+          <span *ngIf="addNewRecipeForm.controls.difficuilty.errors?.required"
+            >This field is mandatory.</span
+          >
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>Daily meal</mat-label>
@@ -93,6 +98,11 @@
           <mat-option value="Brunch">Brunch</mat-option>
           <mat-option value="Snack">Snack</mat-option>
         </mat-select>
+        <mat-error *ngIf="addNewRecipeForm.controls.dailyMeal.touched && addNewRecipeForm.controls.dailyMeal.invalid">
+          <span *ngIf="addNewRecipeForm.controls.dailyMeal.errors?.required"
+            >This field is mandatory.</span
+          >
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="inline-container">
