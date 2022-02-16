@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -18,7 +18,7 @@ export class AddNewComponent implements OnInit {
 
   @ViewChild('fileTable') inputFileTable: any; 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private cd: ChangeDetectorRef) { }
 
   addNewRecipeForm = this.formBuilder.group({
     title: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -42,7 +42,8 @@ export class AddNewComponent implements OnInit {
   }
 
   ngAddStep(): void {
-    this.stepFieldAsFormArray.push(this.step())
+    this.stepFieldAsFormArray.push(this.step());
+    this.cd.detectChanges();
   }
 
   ngOnFileSelected(event: any): void {

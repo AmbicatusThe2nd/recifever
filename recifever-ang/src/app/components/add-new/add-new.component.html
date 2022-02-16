@@ -129,7 +129,7 @@
     <div class="dynamic-field-step">
       <div class="inline-container" *ngFor="let control of stepFieldAsFormArray.controls; let i = index;" 
       formArrayName="steps">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" [formGroupName]="i">
           <mat-label> Enter steps of the recipe </mat-label>
           <textarea  matInput class="form-field" formControlName="step" required></textarea>
         </mat-form-field>
