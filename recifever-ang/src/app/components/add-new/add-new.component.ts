@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -29,13 +29,20 @@ export class AddNewComponent implements OnInit {
     stepTextFrom: new FormControl('', [Validators.required, Validators.pattern(/[A-Za-z]/g)])
   })
 
+  @ViewChild('fileTable') inputFileTable: any; 
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   ngOnSubmit(): void {
-    alert('You have submited the form')
+    alert('You have submited the form') 
+  }
+
+  ngOnFileSelected(event: any): void {
+    // This takes the file name and puts it in the disabled input
+    this.inputFileTable.nativeElement.value += event.target.files[0].name
   }
 
 }
