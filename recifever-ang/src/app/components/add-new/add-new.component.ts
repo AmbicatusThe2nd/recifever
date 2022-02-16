@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -16,7 +16,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AddNewComponent implements OnInit {
 
-  addNewRecipeForm = new FormGroup({
+  @ViewChild('fileTable') inputFileTable: any; 
+
+  constructor(private formBuilder: FormBuilder) { }
+
+  addNewRecipeForm = this.formBuilder.group({
     title: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     preparationTime: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     coockingTime: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
@@ -26,23 +30,34 @@ export class AddNewComponent implements OnInit {
     igredient: new FormControl('', [Validators.required, Validators.pattern(/[A-Za-z]/g)]),
     amount: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     measurement: new FormControl('', [Validators.required]),
-    stepTextFrom: new FormControl('', [Validators.required, Validators.pattern(/[A-Za-z]/g)])
+    steps: this.formBuilder.array([])
   })
 
-  @ViewChild('fileTable') inputFileTable: any; 
-
-  constructor() { }
-
   ngOnInit(): void {
+    this.ngAddStep(); // To add the first field
   }
 
   ngOnSubmit(): void {
     alert('You have submited the form') 
   }
 
+  ngAddStep(): void {
+    this.stepFieldAsFormArray.push(this.step())
+  }
+
   ngOnFileSelected(event: any): void {
     // This takes the file name and puts it in the disabled input
     this.inputFileTable.nativeElement.value += event.target.files[0].name
+  }
+
+  get stepFieldAsFormArray(): FormArray {
+    return this.addNewRecipeForm.get('steps') as FormArray;
+  }
+
+  step(): any {
+    return this.formBuilder.group({
+      step: this.formBuilder.control('', [Validators.required, Validators.pattern(/[A-Za-z]/g)]),
+    })
   }
 
 }

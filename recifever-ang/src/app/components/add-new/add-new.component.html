@@ -126,15 +126,19 @@
         <mat-icon>plus_one</mat-icon>
       </button>
     </div>
-    <div class="inline-container">
-      <mat-form-field appearance="outline">
-        <mat-label> Enter steps of the recipe </mat-label>
-        <textarea  matInput class="form-field" formControlName="stepTextFrom" required ></textarea>
-      </mat-form-field>
-      <button mat-mini-fab color="accent" type="button">
-        <mat-icon>plus_one</mat-icon>
-      </button>
+    <div class="dynamic-field-step">
+      <div class="inline-container" *ngFor="let control of stepFieldAsFormArray.controls; let i = index;" 
+      formArrayName="steps">
+        <mat-form-field appearance="outline">
+          <mat-label> Enter steps of the recipe </mat-label>
+          <textarea  matInput class="form-field" formControlName="step" required></textarea>
+        </mat-form-field>
+        <button mat-mini-fab color="accent" type="button" (click)="ngAddStep()">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
     </div>
+    <div class="dynamic-field-steps">
     <div class="inline-container">
       <mat-form-field appearance="outline">
         <mat-label> Add photos if you want </mat-label>
@@ -144,6 +148,7 @@
         <mat-icon>add_photo_alternate</mat-icon>
       </button>
       <input type="file" style="display: none;" #fileInput (change)="ngOnFileSelected($event)" />
+    </div>
     </div>
     <button mat-raised-button color="accent" type="submit">
       Submit recipe
