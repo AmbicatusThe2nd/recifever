@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -27,14 +27,13 @@ export class AddNewComponent implements OnInit {
     calories: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
     difficuilty: new FormControl('1-5', [Validators.required]),
     dailyMeal: new FormControl('', [Validators.required]),
-    igredient: new FormControl('', [Validators.required, Validators.pattern(/[A-Za-z]/g)]),
-    amount: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-    measurement: new FormControl('', [Validators.required]),
+    ingredients: this.formBuilder.array([]),
     steps: this.formBuilder.array([])
   })
 
   ngOnInit(): void {
     this.ngAddStep(); // To add the first field
+    this.ngAddIngredient(); // To add the first field
   }
 
   ngOnSubmit(): void {
@@ -43,6 +42,11 @@ export class AddNewComponent implements OnInit {
 
   ngAddStep(): void {
     this.stepFieldAsFormArray.push(this.step());
+    this.cd.detectChanges();
+  }
+
+  ngAddIngredient(): void {
+    this.ingredientAsFormArray.push(this.ingredient());
     this.cd.detectChanges();
   }
 
@@ -55,10 +59,21 @@ export class AddNewComponent implements OnInit {
     return this.addNewRecipeForm.get('steps') as FormArray;
   }
 
+  get ingredientAsFormArray(): FormArray {
+  return this.addNewRecipeForm.get('ingredients') as FormArray;
+  }
+
   step(): any {
     return this.formBuilder.group({
       step: this.formBuilder.control('', [Validators.required, Validators.pattern(/[A-Za-z]/g)]),
     })
   }
 
+  ingredient(): any {
+    return this.formBuilder.group({ 
+      igredient: new FormControl('', [Validators.required, Validators.pattern(/[A-Za-z]/g)]),
+      amount: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+      measurement: new FormControl('', [Validators.required]),
+    })
+  }
 }

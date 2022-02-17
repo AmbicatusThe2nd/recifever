@@ -105,26 +105,29 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <div class="inline-container">
-      <mat-form-field appearance="outline">
-        <mat-label> Ingridient </mat-label>
-        <input matInput formControlName="igredient" required />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label> Ammount </mat-label>
-        <input matInput formControlName="amount" required />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-select formControlName="measurement">
-          <mat-option value="Tablespoon">Tablespoon</mat-option>
-          <mat-option value="Teaspoon">Teaspoon</mat-option>
-          <mat-option value="Cup">Cup</mat-option>
-          <mat-option value="Generally">Generally</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-mini-fab color="accent" type="button">
-        <mat-icon>plus_one</mat-icon>
-      </button>
+    <div class="dynamic-field-step">
+      <div class="inline-container" *ngFor="let control of ingredientAsFormArray.controls; let i = index;"
+      formArrayName="ingredients">
+        <mat-form-field appearance="outline" [formGroupName]="i">
+          <mat-label> Ingridient </mat-label>
+          <input matInput formControlName="igredient" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline" [formGroupName]="i">
+          <mat-label> Ammount </mat-label>
+          <input matInput formControlName="amount" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline" [formGroupName]="i">
+          <mat-select formControlName="measurement">
+            <mat-option value="Tablespoon">Tablespoon</mat-option>
+            <mat-option value="Teaspoon">Teaspoon</mat-option>
+            <mat-option value="Cup">Cup</mat-option>
+            <mat-option value="Generally">Generally</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-mini-fab color="accent" type="button" (click)="ngAddIngredient()">
+          <mat-icon>plus_one</mat-icon>
+        </button>
+      </div>
     </div>
     <div class="dynamic-field-step">
       <div class="inline-container" *ngFor="let control of stepFieldAsFormArray.controls; let i = index;" 
