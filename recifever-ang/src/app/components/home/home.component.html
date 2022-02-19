@@ -1,16 +1,26 @@
 <p>home works!</p>
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let recipe of allRecipes">
+    <div
+      fxFlex="25%"
+      fxFlex.xs="100%"
+      fxFlex.sm="33%"
+      *ngFor="let recipe of allRecipes"
+    >
       <mat-card class="card">
-        <mat-card-header>
+        <a routerLink="../detailed/{{ recipe.id }}">
+          <mat-card-header>
             <mat-card-title>{{ recipe.title }}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="{{ recipe.photos[0] }}" />
-
+          </mat-card-header>
+          <img mat-card-image src="{{ recipe.photos[0] }}" />
+        </a>
         <mat-card-content>
           <p>
-            Difficulty: <strong> {{ recipe.difficulty }}/5 </strong> Calories: <strong> {{recipe.calories}} </strong> Total time: <strong> {{recipe.preperationTime + recipe.cookingTime}} min </strong>
+            Difficulty: <strong> {{ recipe.difficulty }}/5 </strong> Calories:
+            <strong> {{ recipe.calories }} </strong> Total time:
+            <strong>
+              {{ recipe.preperationTime + recipe.cookingTime }} min
+            </strong>
           </p>
         </mat-card-content>
       </mat-card>
