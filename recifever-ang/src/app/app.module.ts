@@ -22,7 +22,8 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AddNewComponent } from './components/add-new/add-new.component'
+import { AddNewComponent } from './components/add-new/add-new.component';
+import { DetailedComponent } from './components/detailed/detailed.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AddNewComponent } from './components/add-new/add-new.component'
     RegisterComponent,
     HomeComponent,
     HeaderComponent,
-    AddNewComponent
+    AddNewComponent,
+    DetailedComponent
   ],
   imports: [
     BrowserModule,
