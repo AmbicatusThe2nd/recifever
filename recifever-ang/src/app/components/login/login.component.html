@@ -1,43 +1,45 @@
-<mat-card>
-  <mat-card-content>
-    <div class="header">
-      <h2>Login</h2>
-    </div>
-    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Email</mat-label>
-        <input
-          type="email"
-          matInput
-          formControlName="email"
-          [errorStateMatcher]="matcher"
-          placeholder="Ex. pat@example.com"
-        />
-        <mat-error
-          *ngIf="loginForm.hasError('email') && !loginForm.hasError('required')"
-        >
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="loginForm.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width" appearance="fill">
-        <mat-label>Password</mat-label>
-        <input
-          type="password"
-          matInput
-          formControlName="password"
-          [errorStateMatcher]="matcher"
-          placeholder="Ex. pat@example.com"
-        />
-        <mat-error *ngIf="loginForm.hasError('required')">
-          Password is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <div class="button-row">
-        <button mat-flat-button color="accent">Login</button>
+<div class="main-div">
+  <mat-card>
+    <mat-card-content>
+      <div class="header">
+        <h2>Login</h2>
       </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+      <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. pat@example.com"
+          />
+          <mat-error
+            *ngIf="loginForm.hasError('email') && !loginForm.hasError('required')"
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="loginForm.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width" appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            formControlName="password"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. pat@example.com"
+          />
+          <mat-error *ngIf="loginForm.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <div class="button-row">
+          <button mat-flat-button color="accent">Login</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
