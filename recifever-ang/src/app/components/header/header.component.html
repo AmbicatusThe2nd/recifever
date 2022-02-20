@@ -1,11 +1,12 @@
 <mat-toolbar color="accent">
-    <button mat-icon-button class="icon favorite-icon">
+    <button mat-icon-button class="icon favorite-icon" (click)="ngOnClickHome()">
         <mat-icon> local_dining </mat-icon>
     </button>
-    <span>Recifever</span>
+    <span>Recifever Angular</span>
     <span class="example-spacer"></span>
     
     <span class="spacer"></span>
+    <button mat-flat-button (click)="ngOnClickAddNew()">Add new Recipe</button>
     <button mat-icon-button class="icon favorite-icon">
         <mat-icon>account_circle</mat-icon>
     </button>
