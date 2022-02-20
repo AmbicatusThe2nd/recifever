@@ -23,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddNewComponent } from './components/add-new/add-new.component';
-import { DetailedComponent } from './components/detailed/detailed.component'
+import { DetailedComponent } from './components/detailed/detailed.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DetailedComponent } from './components/detailed/detailed.component'
     FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule
   ],
   providers: [MatDatepickerModule, UserService],
   bootstrap: [AppComponent]
