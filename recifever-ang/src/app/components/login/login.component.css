@@ -35,3 +35,7 @@ input {
     display: table-cell;
     width: 800px;
   }
+
+  .link-row{
+    margin-top: 10px;
+  }
