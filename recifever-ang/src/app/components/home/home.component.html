@@ -1,4 +1,3 @@
-<p>home works!</p>
 <div class="content">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div
@@ -8,7 +7,7 @@
       *ngFor="let recipe of allRecipes"
     >
       <mat-card class="card">
-        <a routerLink="../detailed/{{ recipe.id }}">
+        <a routerLink="../detailed/{{ recipe.id }}" mat-button>
           <mat-card-header>
             <mat-card-title>{{ recipe.title }}</mat-card-title>
           </mat-card-header>
