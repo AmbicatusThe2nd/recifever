@@ -4,15 +4,20 @@ using MongoDB.Driver;
 using System;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace recefever_webapi.Services
 {
     public class UserService
     {
         private readonly IMongoCollection<User> _userCollection;
+        private readonly TokenOptions _tokenOptions;
 
         public UserService(
-            IOptions<RecipeDatabaseSettings> bookStoreDatabaseSettings)
+            IOptions<RecipeDatabaseSettings> bookStoreDatabaseSettings, IOptions<TokenOptions> options)
         {
             var mongoClient = new MongoClient(
                 bookStoreDatabaseSettings.Value.ConnectionString);
@@ -22,6 +27,8 @@ namespace recefever_webapi.Services
 
             _userCollection = mongoDatabase.GetCollection<User>(
                 bookStoreDatabaseSettings.Value.UserCollectionName);
+
+            _tokenOptions = options.Value;
         }
 
         public async Task<List<User>> GetAsync() =>
@@ -79,6 +86,22 @@ namespace recefever_webapi.Services
                 numBytesRequested: 256 / 8));
 
             return hased == storedHash;
+        }
+
+        public string generateToken(List<Claim> claims)
+        {
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenOptions.SecurityKey));
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+            var tokeOptions = new JwtSecurityToken(
+            issuer: _tokenOptions.Issuer,
+            audience: _tokenOptions.Audience,
+            claims,
+            expires: DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration),
+            signingCredentials: signinCredentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(tokeOptions);
         }
     }
 }

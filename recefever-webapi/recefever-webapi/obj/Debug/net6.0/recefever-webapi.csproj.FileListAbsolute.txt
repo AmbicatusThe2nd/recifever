@@ -85,3 +85,10 @@ C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\
 C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\obj\Debug\net6.0\recefever-webapi.pdb
 C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\obj\Debug\net6.0\recefever-webapi.genruntimeconfig.cache
 C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Rok Tkalcic\Documents\Diploma\recifever-app\recifever\recefever-webapi\recefever-webapi\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

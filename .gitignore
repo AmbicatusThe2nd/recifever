@@ -84,3 +84,4 @@ recefever-webapi/.vs/recefever-webapi/DesignTimeBuild/.dtbcache.v2
 *.dll
 *.pdb
 *.suo
+recefever-webapi/recefever-webapi/bin/Debug/net6.0/appsettings.json

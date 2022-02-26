@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using recefever_webapi.Models;
 using recefever_webapi.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -48,9 +52,19 @@ namespace recefever_webapi.Controllers
         {
             var claimedUser = await _userService.GetByEmailAsync(user.email);
             if (claimedUser == null) { return NotFound(); }
-            if (!_userService.VerifyPassword(user.password, claimedUser.password, claimedUser.salt)) { return NotFound(); }
-
-            return Ok(claimedUser);
+            // if (!_userService.VerifyPassword(user.password, claimedUser.password, claimedUser.salt)) { return NotFound(); }
+            if (_userService.VerifyPassword(user.password, claimedUser.password, claimedUser.salt))
+            {
+                var claims = new List<Claim>();
+                claims.Add(new Claim("userName", claimedUser.firstName + " " + claimedUser.lastName));
+                claims.Add(new Claim("userId", claimedUser.Id));
+                var generatedToken = _userService.generateToken(claims);
+                return Ok(new { Token = generatedToken });
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
 
         // PUT api/<UserController>/5
