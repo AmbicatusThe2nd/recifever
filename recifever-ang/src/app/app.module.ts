@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { JwtModule } from "@auth0/angular-jwt";
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatSliderModule } from '@angular/material/slider'
@@ -26,6 +27,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { AddNewComponent } from './components/add-new/add-new.component';
 import { DetailedComponent } from './components/detailed/detailed.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGuard } from './guards/auth-guard.service';
+
+
+export function getToken() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -55,9 +62,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatIconModule,
     MatSelectModule,
     MatMenuModule,
-    NgbModule
+    NgbModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken,
+        whitelistedDomains: ["localhost:7201"],
+        blacklistedRoutes: []
+      }
+    })
   ],
-  providers: [MatDatepickerModule, UserService],
+  providers: [MatDatepickerModule, UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
