@@ -50,15 +50,15 @@ namespace recefever_webapi.Controllers
         [HttpPost("~/login")]
         public async Task<ActionResult<User>> Get([FromBody] LoginModel user)
         {
-            var claimedUser = await _userService.GetByEmailAsync(user.email);
+            User claimedUser = await _userService.GetByEmailAsync(user.email);
             if (claimedUser == null) { return NotFound(); }
             // if (!_userService.VerifyPassword(user.password, claimedUser.password, claimedUser.salt)) { return NotFound(); }
             if (_userService.VerifyPassword(user.password, claimedUser.password, claimedUser.salt))
             {
-                var claims = new List<Claim>();
+                List<Claim> claims = new List<Claim>();
                 claims.Add(new Claim("userName", claimedUser.firstName + " " + claimedUser.lastName));
                 claims.Add(new Claim("userId", claimedUser.Id));
-                var generatedToken = _userService.generateToken(claims);
+                string generatedToken = _userService.generateToken(claims);
                 return Ok(new { Token = generatedToken });
             }
             else
