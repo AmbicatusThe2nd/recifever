@@ -11,7 +11,8 @@
           <mat-card-header>
             <mat-card-title>{{ recipe.title }}</mat-card-title>
           </mat-card-header>
-          <img mat-card-image src="{{ recipe.photos[0] }}" />
+          <img *ngIf="recipe.photos.length >= 1" mat-card-image src="{{ recipe.photos[0] }}" />
+          <img *ngIf="recipe.photos.length == 0" mat-card-image src="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png" />
         </a>
         <mat-card-content>
           <p>
