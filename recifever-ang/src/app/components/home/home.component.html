@@ -7,7 +7,7 @@
       *ngFor="let recipe of allRecipes"
     >
       <mat-card class="card">
-        <a routerLink="../detailed/{{ recipe.id }}" mat-button>
+        <a routerLink="../detailed/{{ recipe.id }}" mat-button color="accent">
           <mat-card-header>
             <mat-card-title>{{ recipe.title }}</mat-card-title>
           </mat-card-header>
