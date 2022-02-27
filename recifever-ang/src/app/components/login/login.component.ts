@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/login.model';
 import { JsonWebToken } from 'src/app/models/token.model';
 import { UserService } from 'src/app/services/user.service';
@@ -39,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -51,7 +52,9 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.get('password')?.value,
       };
       this.userService.loginUser(loginData).subscribe((response: JsonWebToken | undefined) => {
-        console.log(response?.token);
+        const token = response?.token as string;
+        localStorage.setItem("jwt", token);
+        this.router.navigate(["/recipes"]);
       });
     }
   }

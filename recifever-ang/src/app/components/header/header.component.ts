@@ -20,4 +20,9 @@ export class HeaderComponent implements OnInit {
   ngOnClickHome(): void {
     this.router.navigate(['/recipes'])
   }
+
+  ngOnClickLogout(): void {
+    localStorage.removeItem("jwt");
+    this.router.navigate(["/login"]);
+  }
 }

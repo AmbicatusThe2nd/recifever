@@ -7,9 +7,19 @@
     
     <span class="spacer"></span>
     <button mat-flat-button (click)="ngOnClickAddNew()">Add new Recipe</button>
-    <button mat-icon-button class="icon favorite-icon">
+    <button mat-icon-button class="icon favorite-icon" [matMenuTriggerFor]="menu">
         <mat-icon>account_circle</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="ngOnClickLogout()">
+          <mat-icon>input</mat-icon>
+          <span>Logout</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>perm_identity</mat-icon>
+          <span>Account</span>
+        </button>
+      </mat-menu>
     <span class="example-spacer"></span>
     <span>User Account</span>
 </mat-toolbar>

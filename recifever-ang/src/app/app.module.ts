@@ -17,6 +17,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -53,6 +54,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatToolbarModule,
     MatIconModule,
     MatSelectModule,
+    MatMenuModule,
     NgbModule
   ],
   providers: [MatDatepickerModule, UserService],
