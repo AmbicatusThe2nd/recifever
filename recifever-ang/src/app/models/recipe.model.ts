@@ -1,7 +1,7 @@
 import { IngredientModel } from "./ingredient.model"
 
 export class Recipe {
-    public Id: string | undefined
+    public Id?: string | undefined
     public title: string | undefined
     public userID: string | undefined
     public preperationTime: number | undefined
@@ -9,7 +9,7 @@ export class Recipe {
     public calories: number | undefined
     public difficulty: number | undefined
     public dailyMeal: string | undefined
-    public photos: string[] | undefined
+    public photos?: string[] | undefined
     public ingredients: IngredientModel[] | undefined
     public steps: string[] | undefined
 }

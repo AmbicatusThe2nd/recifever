@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { Recipe } from 'src/app/models/recipe.model';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -37,7 +38,20 @@ export class AddNewComponent implements OnInit {
   }
 
   ngOnSubmit(): void {
-    alert('You have submited the form') 
+    if (this.addNewRecipeForm.valid) {
+      const newRecipe: Recipe = {
+        title: this.addNewRecipeForm.get('title')?.value,
+        userID: this.getUserId(),
+        preperationTime: this.addNewRecipeForm.get('preparationTime')?.value,
+        cookingTime: this.addNewRecipeForm.get('coockingTime')?.value,
+        calories: this.addNewRecipeForm.get('calories')?.value,
+        difficulty: this.addNewRecipeForm.get('difficuilty')?.value,
+        dailyMeal: this.addNewRecipeForm.get('dailyMeal')?.value,
+        ingredients: this.addNewRecipeForm.get('ingredients')?.value,
+        steps: this.addNewRecipeForm.get('steps')?.value
+      }
+      console.log(newRecipe);
+    }
   }
 
   ngAddStep(): void {
@@ -75,5 +89,12 @@ export class AddNewComponent implements OnInit {
       amount: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
       measurement: new FormControl('', [Validators.required]),
     })
+  }
+
+  private getUserId(): string {
+    const token: string = localStorage.getItem('jwt') as string;
+    const decodedJWT = JSON.parse(window.atob(token.split('.')[1]));
+
+    return decodedJWT.userId;
   }
 }

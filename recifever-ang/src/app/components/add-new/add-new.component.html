@@ -42,7 +42,7 @@
       </mat-form-field>
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>Coocking Time (minutes)</mat-label>
-        <input matInput formControlName="preparationTime" required />
+        <input matInput formControlName="coockingTime" required />
         <mat-error
           *ngIf="
             addNewRecipeForm.controls.coockingTime.touched &&
@@ -59,7 +59,7 @@
       </mat-form-field>
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>Calories</mat-label>
-        <input matInput formControlName="preparationTime" required />
+        <input matInput formControlName="calories" required />
         <mat-error
           *ngIf="
             addNewRecipeForm.controls.calories.touched &&
