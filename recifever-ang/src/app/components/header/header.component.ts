@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  public userName: string = '';
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.userName = this.getUserNameFromToken();
   }
 
   ngOnClickAddNew(): void {
@@ -24,5 +27,12 @@ export class HeaderComponent implements OnInit {
   ngOnClickLogout(): void {
     localStorage.removeItem("jwt");
     this.router.navigate(["/login"]);
+  }
+
+  private getUserNameFromToken(): string {
+    const token: string = localStorage.getItem('jwt') as string;
+    const decodedJWT = JSON.parse(window.atob(token.split('.')[1]));
+
+    return decodedJWT.userName;
   }
 }
