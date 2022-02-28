@@ -8,7 +8,7 @@ export class Recipe {
     public cookingTime: number | undefined
     public calories: number | undefined
     public difficulty: number | undefined
-    public dailyMeal: string | undefined
+    public dailyMeal: number | undefined
     public photos?: string[] | undefined
     public ingredients: IngredientModel[] | undefined
     public steps: string[] | undefined

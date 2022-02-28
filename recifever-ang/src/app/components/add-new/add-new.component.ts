@@ -1,36 +1,71 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, ElementRef } from '@angular/core';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
 @Component({
   selector: 'app-add-new',
   templateUrl: './add-new.component.html',
-  styleUrls: ['./add-new.component.css']
+  styleUrls: ['./add-new.component.css'],
 })
 export class AddNewComponent implements OnInit {
+  @ViewChild('fileTable')
+  inputFileTable!: ElementRef;
 
-  @ViewChild('fileTable') inputFileTable: any; 
-
-  constructor(private formBuilder: FormBuilder, private cd: ChangeDetectorRef) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private cd: ChangeDetectorRef,
+    private recipeService: RecipeService,
+    private router: Router
+  ) {}
 
   addNewRecipeForm = this.formBuilder.group({
-    title: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    preparationTime: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-    coockingTime: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-    calories: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+    title: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(30),
+      Validators.minLength(3),
+    ]),
+    preparationTime: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+    ]),
+    coockingTime: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+    ]),
+    calories: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+    ]),
     difficuilty: new FormControl('1-5', [Validators.required]),
     dailyMeal: new FormControl('', [Validators.required]),
     ingredients: this.formBuilder.array([]),
-    steps: this.formBuilder.array([])
-  })
+    steps: this.formBuilder.array([]),
+    photos: new FormControl('')
+  });
 
   ngOnInit(): void {
     this.ngAddStep(); // To add the first field
@@ -42,15 +77,24 @@ export class AddNewComponent implements OnInit {
       const newRecipe: Recipe = {
         title: this.addNewRecipeForm.get('title')?.value,
         userID: this.getUserId(),
-        preperationTime: this.addNewRecipeForm.get('preparationTime')?.value,
-        cookingTime: this.addNewRecipeForm.get('coockingTime')?.value,
-        calories: this.addNewRecipeForm.get('calories')?.value,
-        difficulty: this.addNewRecipeForm.get('difficuilty')?.value,
-        dailyMeal: this.addNewRecipeForm.get('dailyMeal')?.value,
+        preperationTime: Number(this.addNewRecipeForm.get('preparationTime')?.value),
+        cookingTime: Number(this.addNewRecipeForm.get('coockingTime')?.value),
+        calories: Number(this.addNewRecipeForm.get('calories')?.value),
+        difficulty: Number(this.addNewRecipeForm.get('difficuilty')?.value),
+        dailyMeal: Number(this.addNewRecipeForm.get('dailyMeal')?.value),
+        photos: this.inputFileTable?.nativeElement.value.trim().split(' '),
         ingredients: this.addNewRecipeForm.get('ingredients')?.value,
-        steps: this.addNewRecipeForm.get('steps')?.value
-      }
-      console.log(newRecipe);
+        steps: this.addNewRecipeForm.get('steps')?.value,
+      };
+      console.log(newRecipe); // Delete this after
+      // this.recipeService.createRecipe(newRecipe).subscribe(
+      //   () => {
+      //     this.router.navigate(['/recipes']);
+      //   },
+      //   () => {
+      //     alert('There was a problem with the server please try later');
+      //   }
+      // );
     }
   }
 
@@ -66,7 +110,7 @@ export class AddNewComponent implements OnInit {
 
   ngOnFileSelected(event: any): void {
     // This takes the file name and puts it in the disabled input
-    this.inputFileTable.nativeElement.value += event.target.files[0].name
+    this.inputFileTable.nativeElement.value += event.target.files[0].name + ' ';
   }
 
   get stepFieldAsFormArray(): FormArray {
@@ -74,21 +118,30 @@ export class AddNewComponent implements OnInit {
   }
 
   get ingredientAsFormArray(): FormArray {
-  return this.addNewRecipeForm.get('ingredients') as FormArray;
+    return this.addNewRecipeForm.get('ingredients') as FormArray;
   }
 
   step(): any {
     return this.formBuilder.group({
-      step: this.formBuilder.control('', [Validators.required, Validators.pattern(/[A-Za-z]/g)]),
-    })
+      step: this.formBuilder.control('', [
+        Validators.required,
+        Validators.pattern(/[A-Za-z]/g),
+      ]),
+    });
   }
 
   ingredient(): any {
-    return this.formBuilder.group({ 
-      igredient: new FormControl('', [Validators.required, Validators.pattern(/[A-Za-z]/g)]),
-      amount: new FormControl('', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
+    return this.formBuilder.group({
+      igredient: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[A-Za-z]/g),
+      ]),
+      amount: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/),
+      ]),
       measurement: new FormControl('', [Validators.required]),
-    })
+    });
   }
 
   private getUserId(): string {

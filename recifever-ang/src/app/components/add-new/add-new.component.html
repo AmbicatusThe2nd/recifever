@@ -92,11 +92,11 @@
       <mat-form-field class="form-field" appearance="outline">
         <mat-label>Daily meal</mat-label>
         <mat-select formControlName="dailyMeal">
-          <mat-option value="Breakfest">Breakfest</mat-option>
-          <mat-option value="Lunch">Lunch</mat-option>
-          <mat-option value="Dinner">Dinner</mat-option>
-          <mat-option value="Brunch">Brunch</mat-option>
-          <mat-option value="Snack">Snack</mat-option>
+          <mat-option value="0">Breakfest</mat-option>
+          <mat-option value="1">Lunch</mat-option>
+          <mat-option value="2">Dinner</mat-option>
+          <mat-option value="3">Brunch</mat-option>
+          <mat-option value="4">Snack</mat-option>
         </mat-select>
         <mat-error *ngIf="addNewRecipeForm.controls.dailyMeal.touched && addNewRecipeForm.controls.dailyMeal.invalid">
           <span *ngIf="addNewRecipeForm.controls.dailyMeal.errors?.required"
@@ -114,7 +114,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline" [formGroupName]="i">
           <mat-label> Ammount </mat-label>
-          <input matInput formControlName="amount" required />
+          <input matInput formControlName="amount" type="number" required />
         </mat-form-field>
         <mat-form-field appearance="outline" [formGroupName]="i">
           <mat-select formControlName="measurement">
@@ -145,7 +145,7 @@
     <div class="inline-container">
       <mat-form-field appearance="outline">
         <mat-label> Add photos if you want </mat-label>
-        <input matInput class="form-field" #fileTable disabled />
+        <input matInput class="form-field" #fileTable disabled  />
       </mat-form-field>
       <button mat-mini-fab color="accent" type="button" (click)="fileInput.click()">
         <mat-icon>add_photo_alternate</mat-icon>

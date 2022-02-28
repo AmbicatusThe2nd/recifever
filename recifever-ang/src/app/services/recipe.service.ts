@@ -13,7 +13,7 @@ export class RecipeService {
   constructor(private http: HttpClient) { }
 
   createRecipe(data: Recipe): Observable<Object> {
-    let API_URL = `${this.apiUrl}/recipe`
+    let API_URL = `${this.apiUrl}/Recipe`
     return this.http.post(API_URL, data)
       .pipe(
         catchError(this.error)
