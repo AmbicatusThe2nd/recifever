@@ -85,3 +85,4 @@ recefever-webapi/.vs/recefever-webapi/DesignTimeBuild/.dtbcache.v2
 *.pdb
 *.suo
 recefever-webapi/recefever-webapi/bin/Debug/net6.0/appsettings.json
+*.png
