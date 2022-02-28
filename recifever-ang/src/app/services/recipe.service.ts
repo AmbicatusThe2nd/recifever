@@ -28,6 +28,10 @@ export class RecipeService {
     return this.http.get(`${this.apiUrl}/Recipe/${id}`)
   }
 
+  uploadFiles(files: FormData): Observable<any> {
+    return this.http.post('https://localhost:7021/upload', files)
+  }
+
   error(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

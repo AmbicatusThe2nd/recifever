@@ -41,6 +41,8 @@ export class AddNewComponent implements OnInit {
     private recipeService: RecipeService,
     private router: Router
   ) {}
+  
+  filesToUpload : File[] = []
 
   addNewRecipeForm = this.formBuilder.group({
     title: new FormControl('', [
@@ -74,6 +76,16 @@ export class AddNewComponent implements OnInit {
 
   ngOnSubmit(): void {
     if (this.addNewRecipeForm.valid) {
+      if (this.filesToUpload.length > 0) {
+        const formData = new FormData();
+
+      Array.from(this.filesToUpload).map((file, index) => {
+        return formData.append('file'+index, file, file.name);
+      })
+      this.recipeService.uploadFiles(formData)
+      .subscribe(() => { console.log("Success")},
+      (err) => { console.log(`Something went wrong ${err}`) });
+      }
       const newRecipe: Recipe = {
         title: this.addNewRecipeForm.get('title')?.value,
         userID: this.getUserId(),
@@ -87,14 +99,14 @@ export class AddNewComponent implements OnInit {
         steps: this.addNewRecipeForm.get('steps')?.value,
       };
       console.log(newRecipe); // Delete this after
-      // this.recipeService.createRecipe(newRecipe).subscribe(
-      //   () => {
-      //     this.router.navigate(['/recipes']);
-      //   },
-      //   () => {
-      //     alert('There was a problem with the server please try later');
-      //   }
-      // );
+      this.recipeService.createRecipe(newRecipe).subscribe(
+        () => {
+          this.router.navigate(['/recipes']);
+        },
+        () => {
+          alert('There was a problem with the server please try later');
+        }
+      );
     }
   }
 
@@ -111,6 +123,7 @@ export class AddNewComponent implements OnInit {
   ngOnFileSelected(event: any): void {
     // This takes the file name and puts it in the disabled input
     this.inputFileTable.nativeElement.value += event.target.files[0].name + ' ';
+    this.filesToUpload.push(event.target.files);
   }
 
   get stepFieldAsFormArray(): FormArray {
