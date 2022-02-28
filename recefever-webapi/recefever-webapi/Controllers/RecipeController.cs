@@ -3,6 +3,7 @@ using recefever_webapi.Services;
 using recefever_webapi.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
+using System.Net.Http.Headers;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -45,6 +46,42 @@ namespace recefever_webapi.Controllers
             await _recipeService.CreateAsync(newRecipe);
 
             return Ok(newRecipe);
+        }
+
+        [HttpPost("~/upload"), DisableRequestSizeLimit]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public IActionResult Upload()
+        {
+            try
+            {
+                IFormFileCollection files = Request.Form.Files;
+                string folderName = Path.Combine("Resources", "Images");
+                string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                if (files.Count == 0)
+                {
+                    return BadRequest("There aren't any files in the requst");
+                }
+
+                foreach(IFormFile file in files)
+                {
+                    string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                    string fullPath = Path.Combine(pathToSave, fileName);
+                    // var dbPath = Path.Combine(folderName, fileName);
+
+                    using(var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        file.CopyTo(stream);
+                    }
+                }
+
+                return Ok("Files have been uploaded");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("There has been an error: " + ex.Message);
+            }
         }
 
         // PUT api/<RecipeController>/5
