@@ -78,13 +78,14 @@ export class AddNewComponent implements OnInit {
     if (this.addNewRecipeForm.valid) {
       if (this.filesToUpload.length > 0) {
         const formData = new FormData();
-
       Array.from(this.filesToUpload).map((file, index) => {
-        return formData.append('file'+index, file, file.name);
+        return formData.append('file'+ index, file, file.name);
       })
       this.recipeService.uploadFiles(formData)
-      .subscribe(() => { console.log("Success")},
-      (err) => { console.log(`Something went wrong ${err}`) });
+      .subscribe(() => { console.log("Success") },
+      (err) => {
+         console.log(`Something went wrong ${err}`)
+    });
       }
       const newRecipe: Recipe = {
         title: this.addNewRecipeForm.get('title')?.value,
@@ -94,18 +95,18 @@ export class AddNewComponent implements OnInit {
         calories: Number(this.addNewRecipeForm.get('calories')?.value),
         difficulty: Number(this.addNewRecipeForm.get('difficuilty')?.value),
         dailyMeal: Number(this.addNewRecipeForm.get('dailyMeal')?.value),
-        photos: this.inputFileTable?.nativeElement.value.trim().split(' '),
+        photos: this.filesToUpload.length > 0 ? this.inputFileTable?.nativeElement.value.trim().split(' ') : [''],
         ingredients: this.addNewRecipeForm.get('ingredients')?.value,
-        steps: this.addNewRecipeForm.get('steps')?.value,
+        steps: this.addNewRecipeForm.get('steps')?.value.map((x: { step: any; }) => {
+          return x.step
+        }),
       };
-      console.log(newRecipe); // Delete this after
+      console.log(newRecipe)
       this.recipeService.createRecipe(newRecipe).subscribe(
         () => {
           this.router.navigate(['/recipes']);
+          console.log(newRecipe);
         },
-        () => {
-          alert('There was a problem with the server please try later');
-        }
       );
     }
   }
@@ -123,7 +124,7 @@ export class AddNewComponent implements OnInit {
   ngOnFileSelected(event: any): void {
     // This takes the file name and puts it in the disabled input
     this.inputFileTable.nativeElement.value += event.target.files[0].name + ' ';
-    this.filesToUpload.push(event.target.files);
+    this.filesToUpload.push(event.target.files[0]);
   }
 
   get stepFieldAsFormArray(): FormArray {
