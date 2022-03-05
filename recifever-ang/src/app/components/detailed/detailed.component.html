@@ -1,18 +1,5 @@
 <div *ngIf="!isLoading">
-  <ngb-carousel *ngIf="recipe.photos.length > 0">
-    <ng-template ngbSlide 
-    *ngFor="let photo of recipe.photos; let i = index">
-      <div
-        class="picsum-img-wrapper"
-      >
-        <img [src]="photo" alt="Random first slide" />
-      </div>
-      <div class="carousel-caption">
-        <h3>10 seconds between slides...</h3>
-        <p>This carousel uses customized default values.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel> 
+  <h1> {{ recipe?.title }}</h1> 
 </div>
 
 

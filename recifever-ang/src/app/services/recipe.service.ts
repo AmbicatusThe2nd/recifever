@@ -24,8 +24,8 @@ export class RecipeService {
     return this.http.get<Recipe[]>(`${this.apiUrl}/Recipe`)
   }
 
-  getSpecificRecipe(id: string | null): Observable<Object> | Observable<Recipe[]> {
-    return this.http.get(`${this.apiUrl}/Recipe/${id}`)
+  getSpecificRecipe(id: string | null): Observable<Recipe | undefined> {
+    return this.http.get<Recipe>(`${this.apiUrl}/Recipe/${id}`)
   }
 
   uploadFiles(files: FormData): Observable<any> {

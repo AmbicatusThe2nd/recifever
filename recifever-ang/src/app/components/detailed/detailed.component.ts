@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
-import { finalize } from 'rxjs';
-import { SELECT_PANEL_INDENT_PADDING_X } from '@angular/material/select/select';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Recipe } from 'src/app/models/recipe.model';
 
 @Component({
   selector: 'app-detailed',
@@ -11,19 +9,12 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./detailed.component.css'],
 })
 export class DetailedComponent implements OnInit {
-  public recipe: any;
+  public recipe: Recipe | undefined;
   public isLoading: Boolean = true;
-  showNavigationArrows = false;
-  showNavigationIndicators = false;
-  images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private recipeService: RecipeService,
-    private config: NgbCarouselConfig
   ) {
-    config.showNavigationArrows = true;
-    config.showNavigationIndicators = true;
   }
 
   ngOnInit(): void {
