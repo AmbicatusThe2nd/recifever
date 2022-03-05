@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from 'src/app/models/recipe.model';
 import { ImageModel } from 'src/app/models/image.mode';
+import { MatTableDataSource } from '@angular/material/table';
+import { IngredientModel } from 'src/app/models/ingredient.model';
 
 @Component({
   selector: 'app-detailed',
@@ -19,6 +21,8 @@ export class DetailedComponent implements OnInit {
   }
 
   imagesInQueue: ImageModel[] = []
+  dataSource: MatTableDataSource<IngredientModel> = new MatTableDataSource();
+  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
 
   ngOnInit(): void {
     this.recipeService
@@ -27,6 +31,7 @@ export class DetailedComponent implements OnInit {
         (resp) => {
           this.recipe = resp;
           this.loadImagesInQueue()
+          this.dataSource = new MatTableDataSource(this.recipe?.ingredients)
           this.isLoading = false;
         }
       );

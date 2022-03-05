@@ -1,6 +1,26 @@
 <div *ngIf="!isLoading">
   <h1>{{ recipe?.title }}</h1>
-  <carousel [images]="imagesInQueue" [cellsToShow]="1" [loop]="true" [autoplay]="true"
- [autoplayInterval]="3000"></carousel>
-<router-outlet></router-outlet>
+  <carousel
+    [images]="imagesInQueue"
+    [cellsToShow]="1"
+    [loop]="true"
+    [autoplay]="true"
+    [autoplayInterval]="3000"
+  ></carousel>
+  <!-- <table mat-table [dataSource]="dataSource">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <ng-container matColumnDef="demo-name">
+    <th mat-header-cell *matHeaderCellDef> Ingredient </th>
+    <td mat-cell *matCellDef="let element"> {{element.ingredient}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="demo-weight">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount + ' ' + element.measurement }} </td>
+  </ng-container>
+
+  </table> -->
 </div>
