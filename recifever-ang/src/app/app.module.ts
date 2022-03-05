@@ -28,6 +28,7 @@ import { AddNewComponent } from './components/add-new/add-new.component';
 import { DetailedComponent } from './components/detailed/detailed.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './guards/auth-guard.service';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 
 export function getToken() {
@@ -63,6 +64,7 @@ export function getToken() {
     MatSelectModule,
     MatMenuModule,
     NgbModule,
+    IvyCarouselModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: getToken,

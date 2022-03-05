@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from 'src/app/models/recipe.model';
+import { ImageModel } from 'src/app/models/image.mode';
 
 @Component({
   selector: 'app-detailed',
@@ -17,14 +18,27 @@ export class DetailedComponent implements OnInit {
   ) {
   }
 
+  imagesInQueue: ImageModel[] = []
+
   ngOnInit(): void {
     this.recipeService
       .getSpecificRecipe(this.route.snapshot.paramMap.get('id'))
       .subscribe(
         (resp) => {
           this.recipe = resp;
+          this.loadImagesInQueue()
           this.isLoading = false;
         }
-      ); 
+      );
+  }
+
+  private loadImagesInQueue() {
+    if(this.recipe?.photos) {
+      for(const photo of this.recipe.photos) {
+        this.imagesInQueue.push({
+          path: photo
+        })
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 <div *ngIf="!isLoading">
-  <h1> {{ recipe?.title }}</h1> 
+  <h1>{{ recipe?.title }}</h1>
+  <carousel [images]="imagesInQueue" [cellsToShow]="1" [loop]="true" [autoplay]="true"
+ [autoplayInterval]="3000"></carousel>
+<router-outlet></router-outlet>
 </div>
-
-
