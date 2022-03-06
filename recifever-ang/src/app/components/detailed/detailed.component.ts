@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from 'src/app/models/recipe.model';
 import { ImageModel } from 'src/app/models/image.mode';
-import { MatTableDataSource } from '@angular/material/table';
 import { IngredientModel } from 'src/app/models/ingredient.model';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user.model';
+
 
 @Component({
   selector: 'app-detailed',
@@ -12,17 +14,20 @@ import { IngredientModel } from 'src/app/models/ingredient.model';
   styleUrls: ['./detailed.component.css'],
 })
 export class DetailedComponent implements OnInit {
+  displayedColumns: string[] = ['ingredient', 'amount', 'measurement'];
+  ingredientSource: IngredientModel[] = []
   public recipe: Recipe | undefined;
+  public recipeUser: User | undefined;
   public isLoading: Boolean = true;
+  
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeService,
+    private userService: UserService
   ) {
   }
 
   imagesInQueue: ImageModel[] = []
-  dataSource: MatTableDataSource<IngredientModel> = new MatTableDataSource();
-  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
 
   ngOnInit(): void {
     this.recipeService
@@ -31,10 +36,20 @@ export class DetailedComponent implements OnInit {
         (resp) => {
           this.recipe = resp;
           this.loadImagesInQueue()
-          this.dataSource = new MatTableDataSource(this.recipe?.ingredients)
+          this.ingredientSource = this.recipe?.ingredients as IngredientModel[]
+          this.getRecipeUser();
           this.isLoading = false;
         }
       );
+  }
+
+  private getRecipeUser() {
+    this.userService.getSpecificUser(this.recipe?.userID as string)
+    .subscribe(
+      (resp) => {
+        this.recipeUser = resp;
+      }
+    )
   }
 
   private loadImagesInQueue() {

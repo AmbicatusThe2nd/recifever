@@ -10,7 +10,7 @@
   <mat-toolbar>
     <div class="icon-group">
       <mat-icon>person_pin</mat-icon>
-      <span> User </span>
+      <span> {{ this.recipeUser?.firstName }} {{ this.recipeUser?.lastName }} </span>
     </div>
     <span class="spacer"></span>
     <div class="icon-group">
@@ -34,20 +34,25 @@
       <span> {{ recipe?.dailyMeal }} </span>
     </div>
   </mat-toolbar>
-  <!-- <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="ingredientSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="ingredient">
+      <th mat-header-cell *matHeaderCellDef> Ingredient </th>
+      <td mat-cell *matCellDef="let element"> {{ element.ingredient }} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let element"> {{ element.amount }} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="measurement">
+      <th mat-header-cell *matHeaderCellDef> Measurement </th>
+      <td mat-cell *matCellDef="let element"> {{ element.measurement }} </td>
+    </ng-container>
+  
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  <ng-container matColumnDef="demo-name">
-    <th mat-header-cell *matHeaderCellDef> Ingredient </th>
-    <td mat-cell *matCellDef="let element"> {{element.ingredient}} </td>
-  </ng-container>
-
-
-  <ng-container matColumnDef="demo-weight">
-    <th mat-header-cell *matHeaderCellDef> Amount </th>
-    <td mat-cell *matCellDef="let element"> {{element.amount + ' ' + element.measurement }} </td>
-  </ng-container>
-
-  </table> -->
+  </table>
 </div>

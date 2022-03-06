@@ -3,7 +3,6 @@ import { Observable, throwError, catchError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { LoginModel } from '../models/login.model';
-import { Token } from '@angular/compiler/src/ml_parser/tokens';
 import { JsonWebToken } from '../models/token.model';
 
 
@@ -25,6 +24,10 @@ export class UserService {
 
   loginUser(data: LoginModel): Observable<JsonWebToken | undefined> {
     return this.http.post<JsonWebToken>(`${this.apiUrl}/login`, data)
+  }
+
+  getSpecificUser(userId: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/api/User/${userId}`)
   }
 
   error(error: HttpErrorResponse) {
