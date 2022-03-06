@@ -74,10 +74,15 @@
             Steps
           </mat-panel-title>
           <mat-panel-description>
-            <mat-icon>  insert_emoticon </mat-icon>
+            <mat-icon> insert_emoticon </mat-icon>
             The recommended steps by the author you can take making {{ this.recipe?.title }}
           </mat-panel-description>
         </mat-expansion-panel-header>
+        <mat-selection-list>
+          <mat-list-option *ngFor="let step of this.recipe?.steps; let i = index">
+           {{ i + 1 }}.    {{ step }} 
+          </mat-list-option>
+        </mat-selection-list>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -67,6 +68,7 @@ export function getToken() {
     MatTableModule,
     MatMenuModule,
     MatExpansionModule,
+    MatListModule,
     NgbModule,
     IvyCarouselModule,
     JwtModule.forRoot({
