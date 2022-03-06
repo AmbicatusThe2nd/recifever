@@ -7,6 +7,33 @@
     [autoplay]="true"
     [autoplayInterval]="3000"
   ></carousel>
+  <mat-toolbar>
+    <div class="icon-group">
+      <mat-icon>person_pin</mat-icon>
+      <span> User </span>
+    </div>
+    <span class="spacer"></span>
+    <div class="icon-group">
+      <mat-icon>alarm</mat-icon>
+      <span> {{ recipe?.preperationTime }} minutes </span>
+    </div>
+    <div class="icon-group">
+      <mat-icon>kitchen</mat-icon>
+      <span> {{ recipe?.cookingTime }} minutes </span>
+    </div>
+    <div class="icon-group">
+      <mat-icon> fastfood </mat-icon>
+      <span> {{ recipe?.calories }} Calories </span>
+    </div>
+    <div class="icon-group">
+      <mat-icon> star </mat-icon>
+      <span> {{ recipe?.difficulty }}/5 </span>
+    </div>
+    <div class="icon-group">
+      <mat-icon> restaurant </mat-icon>
+      <span> {{ recipe?.dailyMeal }} </span>
+    </div>
+  </mat-toolbar>
   <!-- <table mat-table [dataSource]="dataSource">
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
