@@ -1,0 +1,79 @@
+﻿@page "/register"
+@layout FormLayout
+@using recifever_blz.Models
+
+<EditForm Model="@RegisterForm" OnValidSubmit="@RegisterSubmit">
+    <div class="row">
+        <div class="col text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" fill="currentColor" class="m-3 bi bi-yin-yang" viewBox="0 0 16 16">
+                <path d="M9.167 4.5a1.167 1.167 0 1 1-2.334 0 1.167 1.167 0 0 1 2.334 0Z"/>
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1 8a7 7 0 0 1 7-7 3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 0 0 7 7 7 0 0 1-7-7Zm7 4.667a1.167 1.167 0 1 1 0-2.334 1.167 1.167 0 0 1 0 2.334Z"/>
+            </svg>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <h3> Register </h3>
+        </div>
+    </div>
+    <DataAnnotationsValidator/>
+    <div class="row">
+        <label class="form-label mt-1">
+            Firstname
+        </label>
+        <div class="col text-center">
+            <div class="form-group">
+                <InputText class="form-control" @bind-Value="RegisterForm.firstName" />
+            </div>
+        </div>
+        <ValidationMessage class="form-check-label" For=@(() => RegisterForm.firstName) /> 
+    </div>
+    <div class="row">
+        <label class="form-label mt-1"> Lastname </label>
+        <div class="col text-center">
+            <div class="form-group">
+                <InputText class="form-control" @bind-Value="RegisterForm.lastName" /> 
+            </div>
+        </div>
+        <ValidationMessage class="form-check-label" For=@(() => RegisterForm.lastName) /> 
+    </div>
+    <div class="row">
+        <label class="form-label mt-1"> Email </label>
+        <div class="col text-center">
+            <div class="form-group">
+                <InputText class="form-control" @bind-Value="RegisterForm.email" /> 
+            </div>
+        </div>
+        <ValidationMessage class="form-check-label" For=@(() => RegisterForm.email) /> 
+    </div>
+    <div class="row">
+        <label class="form-label mt-1"> Password </label>
+        <div class="col text-center">
+            <div class="form-group">
+                <InputText type="password" class="form-control" @bind-Value="RegisterForm.password" /> 
+            </div>
+        </div>
+        <ValidationMessage class="form-check-label" For=@(() => RegisterForm.password) /> 
+    </div>
+    <div class="row">
+        <label class="form-label mt-1"> Confirm Password </label>
+        <div class="col text-center">
+            <div class="form-group">
+                <InputText class="form-control" type="password" @bind-Value="RegisterForm.passworRepeat" /> 
+            </div>
+        </div>
+        <ValidationMessage class="form-check-label" For=@(() => RegisterForm.passworRepeat) /> 
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <button class="mt-1 btn btn-outline-primary" type="submit"> Register </button>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+
+    private RegistrationModel RegisterForm = new RegistrationModel();
+
+    private void RegisterSubmit() => Console.WriteLine(RegisterForm.firstName);
+}
