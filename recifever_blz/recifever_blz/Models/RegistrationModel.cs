@@ -20,9 +20,9 @@ namespace recifever_blz.Models
         public string? password { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "The passwords do not match")]
+        [Compare("password", ErrorMessage = "The passwords do not match")]
         public string? passworRepeat { get; set; }
         [Required(ErrorMessage = "This field is required")]
-        public string? birthDate { get; set; }
+        public DateOnly? birthDate { get; set; }
     }
 }
