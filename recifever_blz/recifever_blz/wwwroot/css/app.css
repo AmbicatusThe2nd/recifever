@@ -45,8 +45,12 @@ a, .btn-link {
     border-color: #6f42c1
 }
 
+.border-primary {
+    border-color: #6f42c1 !important;
+}
+
 .btn-outline-primary:hover {
-    color: #222;
+    color: #fff;
     background-color: #6f42c1;
     border-color: #6f42c1
 }
