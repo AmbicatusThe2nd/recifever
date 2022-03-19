@@ -80,7 +80,7 @@
                     </label>
                     <div class="col text-center">
                         <div class="form-group">
-                            <InputSelect class="form-select" @bind-Value="recipeFormModel.Difficulty">
+                            <InputSelect class="form-select" @bind-Value="recipeFormModel.DailyMeal">
                                 <option value="0"> Breakfest </option>
                                 <option value="1"> Lunch </option>
                                 <option value="2"> Dinner </option>
@@ -89,7 +89,7 @@
                             </InputSelect>
                         </div>
                     </div>
-                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.Difficulty) />
+                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.DailyMeal) />
                 </div>
                 @for(int i=0; i < recipeFormModel.Ingredients.Count; i++)
                 {
@@ -139,25 +139,27 @@
                         <label class="form-label">
                             Step @(i+1):
                         </label>
-                        <div class="col text-center">
+                        <div class="col">
                             <div class="form-group">
                                 <InputTextArea placeholder="Ingredient title" class="form-control" @bind-Value="step"/>
                             </div>
                         </div>
-                        <div class="col text-center">
-                             <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Steps.RemoveAt(index))"> Remove </button>
+                        <div class="col col-lg-1">
+                            <div class="form-group">
+                                <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Steps.RemoveAt(index))"> Remove </button>
+                            </div>
                         </div>
                     </div>
                 }
                 <div class="row">
-                    <div class="col text-center">
+                    <div class="col">
                         <button class="mt-2 btn btn-outline-primary" type="button" @onclick="(() => recipeFormModel.Steps.Add(string.Empty))"> Add Step </button>
                     </div>
                 </div>
-                <div class="row">
-                <div class="col text-center">
-                    <button class="mt-2 mb-3 btn btn-outline-primary" type="submit"> Add Recipe </button>
-                </div>
+              <div class="row">
+                    <div class="col text-center">
+                        <button class="mt-2 mb-3 btn btn-outline-primary" type="submit"> Add Recipe </button>
+                    </div>
             </div>
             </EditForm>
         </div>
