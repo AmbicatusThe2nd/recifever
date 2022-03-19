@@ -120,8 +120,16 @@
                                 </InputSelect>
                             </div>
                         </div>
+                        <div class="col text-center">
+                            <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Ingredients.Add(new IngredientModel()))"> Remove </button>
+                        </div>
                     </div>
                 }
+                <div class="row">
+                    <div class="col text-center">
+                        <button class="mt-2 btn btn-outline-primary" type="button" @onclick="(() => recipeFormModel.Ingredients.Add(new IngredientModel()))"> Add Ingredient </button>
+                    </div>
+                </div>
                 @for(int i=0; i < recipeFormModel.Steps.Count; i++)
                 {
                     int index = i;
@@ -136,8 +144,16 @@
                                 <InputTextArea placeholder="Ingredient title" class="form-control" @bind-Value="step"/>
                             </div>
                         </div>
+                        <div class="col text-center">
+                             <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Ingredients.Add(new IngredientModel()))"> Remove </button>
+                        </div>
                     </div>
                 }
+                <div class="row">
+                    <div class="col text-center">
+                        <button class="mt-2 btn btn-outline-primary" type="button" @onclick="(() => recipeFormModel.Steps.Add(string.Empty))"> Add Step </button>
+                    </div>
+                </div>
                 <div class="row">
                 <div class="col text-center">
                     <button class="mt-2 btn btn-outline-primary" type="submit"> Add Recipe </button>
