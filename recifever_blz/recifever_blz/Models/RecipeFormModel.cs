@@ -29,7 +29,7 @@ namespace recifever_blz.Models
         public int DailyMeal { get; set; }
 
         // public string[]? Photos { get; set; } This will be implemented later
-        public List<IngredientModel> Ingredients { get; set; } = null!;
-        public List<string> Steps { get; set; } = null!;
+        public List<IngredientModel> Ingredients { get; set; } = new List<IngredientModel>();
+        public List<string> Steps { get; set; } = new List<string>();
     }
 }

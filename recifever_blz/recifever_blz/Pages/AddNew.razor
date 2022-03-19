@@ -1,12 +1,165 @@
 ﻿@page "/add-new"
 @using recifever_blz.Models
 
-<h3> Add a new recipe </h3>
+
+
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6 justify-content-center align-items-center">
+            <EditForm Model="@recipeFormModel" OnValidSubmit="@OnNewRecpe">
+                <div class="row">
+                    <div class="col text-center">
+                        <h3> Add a new recipe </h3>
+                    </div>
+                </div>
+                <DataAnnotationsValidator/>
+                <div class="row">
+                    <label class="form-label">
+                        Title:
+                    </label>
+                    <div class="col text-center">
+                        <div class="form-group">
+                            <InputText class="form-control" @bind-Value="recipeFormModel.Title"/>
+                        </div>
+                    </div>
+                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.Title) />
+                </div>
+                <div class="row">
+                    <label class="form-label">
+                        Preperation Time:
+                    </label>
+                    <div class="col text-center">
+                        <div class="form-group">
+                            <InputNumber class="form-control" @bind-Value="recipeFormModel.PreperationTime"/>
+                        </div>
+                    </div>
+                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.PreperationTime) />
+                </div>
+                <div class="row">
+                    <label class="form-label">
+                        Cooking Time:
+                    </label>
+                    <div class="col text-center">
+                        <div class="form-group">
+                            <InputNumber class="form-control" @bind-Value="recipeFormModel.CookingTime"/>
+                        </div>
+                    </div>
+                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.CookingTime) />
+                </div>
+                <div class="row">
+                    <label class="form-label">
+                        Calories:
+                    </label>
+                    <div class="col text-center">
+                        <div class="form-group">
+                            <InputNumber class="form-control" @bind-Value="recipeFormModel.Calories"/>
+                        </div>
+                    </div>
+                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.Calories) />
+                </div>
+                <div class="row">
+                    <label class="form-label">
+                        Difficulty:
+                    </label>
+                    <div class="col text-center">
+                        <div class="form-group">
+                            <InputSelect class="form-select" @bind-Value="recipeFormModel.Difficulty">
+                                <option value="1"> Easy </option>
+                                <option value="2"> Normal </option>
+                                <option value="3"> Intermediate </option>
+                                <option value="4"> Hard </option>
+                                <option value="5"> Expert </option>
+                            </InputSelect>
+                        </div>
+                    </div>
+                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.Difficulty) />
+                </div>
+                <div class="row">
+                    <label class="form-label">
+                        Daily Meal:
+                    </label>
+                    <div class="col text-center">
+                        <div class="form-group">
+                            <InputSelect class="form-select" @bind-Value="recipeFormModel.Difficulty">
+                                <option value="0"> Breakfest </option>
+                                <option value="1"> Lunch </option>
+                                <option value="2"> Dinner </option>
+                                <option value="3"> Brunch </option>
+                                <option value="4"> Snack </option>
+                            </InputSelect>
+                        </div>
+                    </div>
+                    <ValidationMessage class="form-check-label" For=@(() => recipeFormModel.Difficulty) />
+                </div>
+                @for(int i=0; i < recipeFormModel.Ingredients.Count; i++)
+                {
+                    int index = i;
+                    IngredientModel ingredient = recipeFormModel.Ingredients[i];
+
+                    <div class="row">
+                        <label class="form-label">
+                            Ingredient @(i+1):
+                        </label>
+                        <div class="col text-center">
+                            <div class="form-group">
+                                <InputText placeholder="Ingredient title" class="form-control" @bind-Value="ingredient.Ingredient"/>
+                            </div>
+                        </div>
+                        <div class="col text-center">
+                            <div class="form-group">
+                                <InputNumber placeholder="Amount" class="form-control" @bind-Value="ingredient.Amount"/>
+                            </div>
+                        </div>
+                        <div class="col text-center">
+                            <div class="form-group">
+                                <InputSelect placeholder="Ingredient title" class="form-select" @bind-Value="ingredient.Measurement">
+                                    <option value="Tablespoon"> Tablespoon </option>
+                                    <option value="Teaspoon"> Teaspoon </option>
+                                    <option value="Cup"> Cup </option>
+                                    <option selected value="Generally"> Generally </option>
+                                </InputSelect>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @for(int i=0; i < recipeFormModel.Steps.Count; i++)
+                {
+                    int index = i;
+                    string step = recipeFormModel.Steps[i];
+
+                    <div class="row">
+                        <label class="form-label">
+                            Step @(i+1):
+                        </label>
+                        <div class="col text-center">
+                            <div class="form-group">
+                                <InputTextArea placeholder="Ingredient title" class="form-control" @bind-Value="step"/>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="row">
+                <div class="col text-center">
+                    <button class="mt-2 btn btn-outline-primary" type="submit"> Add Recipe </button>
+                </div>
+            </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
 
 @code {
+    RecipeFormModel recipeFormModel = new RecipeFormModel();
 
     protected override void OnInitialized()
     {
-        // OnInit code goes here
+        recipeFormModel.Ingredients.Add(new IngredientModel());
+        recipeFormModel.Steps.Add(string.Empty);
+    }
+
+    private void OnNewRecpe()
+    {
+        Console.WriteLine("I am activated yay");
     }
 }
