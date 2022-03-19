@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="col text-center">
-                            <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Ingredients.Add(new IngredientModel()))"> Remove </button>
+                            <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Ingredients.RemoveAt(index))"> Remove </button>
                         </div>
                     </div>
                 }
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                         <div class="col text-center">
-                             <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Ingredients.Add(new IngredientModel()))"> Remove </button>
+                             <button class="btn btn-outline-danger" type="button" @onclick="(() => recipeFormModel.Steps.RemoveAt(index))"> Remove </button>
                         </div>
                     </div>
                 }
@@ -156,7 +156,7 @@
                 </div>
                 <div class="row">
                 <div class="col text-center">
-                    <button class="mt-2 btn btn-outline-primary" type="submit"> Add Recipe </button>
+                    <button class="mt-2 mb-3 btn btn-outline-primary" type="submit"> Add Recipe </button>
                 </div>
             </div>
             </EditForm>
