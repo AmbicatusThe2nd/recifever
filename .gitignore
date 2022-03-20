@@ -348,3 +348,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+recifever_blz/recifever_blz/wwwroot/appsettings.json

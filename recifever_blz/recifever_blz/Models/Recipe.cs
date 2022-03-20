@@ -8,9 +8,9 @@
         public double PreperationTime { get; set; }
         public double Calories { get; set; }
         public int Difficulty { get; set; }
-        public int DailyMeal { get; set; }
+        public string DailyMeal { get; set; } = null!;
         public string[]? Photos { get; set; }
-        public IngredientModel Ingredients { get; set; } = null!;
+        public IngredientModel[] Ingredients { get; set; } = null!;
         public string[] Steps { get; set; } = null!;
     }
 }

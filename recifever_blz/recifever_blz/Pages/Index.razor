@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using recifever_blz.Services.RecipeServices
+@using recifever_blz.Models;
+
 
 <PageTitle> Recifever Blazor </PageTitle>
 
@@ -116,3 +119,18 @@
      </div>
     </div>
 </div>
+
+@code {
+    public List<Recipe> Recipes { get; set; } = null!;
+    [Inject]
+    public IRecipeService RecipeService { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Recipes = (await RecipeService.GetAllRecipesAsync()).ToList();
+        foreach(Recipe recipe in Recipes)
+        {
+            Console.WriteLine(recipe);
+        }
+    }
+}
