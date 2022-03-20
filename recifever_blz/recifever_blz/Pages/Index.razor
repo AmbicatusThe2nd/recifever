@@ -7,118 +7,28 @@
 
 <h3> Explore your favorite meals! </h3>
 
-<div class="d-flex flex-wrap">
-  <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
+@if (Recipes == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="d-flex flex-wrap">
+      @foreach(var recipe in Recipes)
+        {
+            <div class="order-3 p-2 bd-highlight">
+              <div class="card border-primary" style="width: 18rem;">
+                <img class="card-img-top" src="@recipe.Photos?.First()" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"> @recipe.Title </h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-outline-primary"> Details </a>
+                </div>
+             </div>
+            </div>
+        } 
     </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-    <div class="order-3 p-2 bd-highlight">
-      <div class="card border-primary" style="width: 18rem;">
-        <img class="card-img-top" src="https://static.dw.com/image/49947376_303.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-outline-primary"> Details </a>
-        </div>
-     </div>
-    </div>
-</div>
+}
 
 @code {
     public List<Recipe> Recipes { get; set; } = null!;
@@ -128,9 +38,5 @@
     protected override async Task OnInitializedAsync()
     {
         Recipes = (await RecipeService.GetAllRecipesAsync()).ToList();
-        foreach(Recipe recipe in Recipes)
-        {
-            Console.WriteLine(recipe);
-        }
     }
 }
