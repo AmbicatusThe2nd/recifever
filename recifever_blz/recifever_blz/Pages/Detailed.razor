@@ -1,10 +1,36 @@
 ﻿@page "/recipe/{recipeId}"
+@inject NavigationManager NavManager
+@using recifever_blz.Services.RecipeServices
+@using recifever_blz.Models;
 
+<PageTitle> Recifever Blazor </PageTitle>
 
-<h3> @recipeId </h3>
+@if(CurrentRecipe == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h1> @CurrentRecipe.Title </h1>
+}
 
 @code {
     [Parameter]
-    public string? recipeId { get; set; }
+    public string? recipeId { get; set; } = null!;
+    [Inject]
+    public IRecipeService? RecipeService { get; set; } = null!;
+    public Recipe? CurrentRecipe { get; set; } = null!;
 
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            CurrentRecipe = (await RecipeService.GetRecipeAsync(recipeId));
+            Console.WriteLine(CurrentRecipe.Title);
+        }
+        catch
+        {
+            NavManager.NavigateTo("/");
+        }
+    }
 }

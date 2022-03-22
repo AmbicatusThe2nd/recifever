@@ -22,5 +22,10 @@ namespace recifever_blz.Services.RecipeServices
         {
             return await _httpClient.GetFromJsonAsync<IEnumerable<Recipe>>(_configuration["APIs:recifeverAPIUrl"] + "/api/Recipe");
         }
+
+        public async Task<Recipe> GetRecipeAsync(string id)
+        {
+            return await _httpClient.GetFromJsonAsync<Recipe>(_configuration["APIs:recifeverAPIUrl"] + "/api/Recipe/" + id);
+        }
     }
 }
