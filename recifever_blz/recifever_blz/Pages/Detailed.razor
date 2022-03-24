@@ -15,14 +15,16 @@
 }
 else
 {
-    <h1> @CurrentRecipe.Title </h1>
+    <div class="container-fluid text-center">
+        <h1> @CurrentRecipe.Title </h1>
+    </div>
     <div class="container-sm container-fluid text-center">
         <div id="carouselexamplecontrols" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
+          <div class="carousel-inner" style="max-width:100%; max-height:300px !important;">
                 @foreach(string photo in CurrentRecipe.Photos)
                 {
-                    <div class="carousel-item active">
-                        <img src="@photo" class="d-block w-75">
+                    <div class="col-sm-4 carousel-item active">
+                        <img src="@photo" class="img-fluid">
                     </div>
                 }
             </div>
@@ -34,6 +36,11 @@ else
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">next</span>
           </button>
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-dark bg-custom">
+                <span class="ms-3 navbar-brand"> user_account </span>
+            </nav>
         </div>
     </div>
     

@@ -60,6 +60,12 @@ a, .btn-link {
     box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
 }
 
+.bg-custom {
+    border: groove !important;
+    border-color: #6f42c1 !important;
+    background-color: #343a40;
+}
+
 
 #blazor-error-ui {
     background: lightyellow;
