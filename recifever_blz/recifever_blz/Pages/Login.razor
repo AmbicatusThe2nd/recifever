@@ -1,6 +1,8 @@
 ﻿@page "/login"
 @layout FormLayout
 @using recifever_blz.Models
+@using recifever_blz.Services.AuthServices;
+@using System.Net;
 
 
 <EditForm Model="@LoginForm" OnValidSubmit="@LoginSubmit">
@@ -49,7 +51,22 @@
 </EditForm>
 
 @code {
+    [Inject]
+    public IUserService UserService { get; set; } = null!;
+
     private LoginModel LoginForm = new LoginModel();
 
-    private void LoginSubmit() => Console.WriteLine(LoginForm);
+    private async void LoginSubmit()
+    {
+        HttpResponseMessage response = (await UserService.AuthWebToken(LoginForm));
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            AuthWebToken jsonWebToken = await response.Content.ReadAsAsync<AuthWebToken>();
+            Console.WriteLine(jsonWebToken.Token);
+        }
+        else
+        {
+            Console.WriteLine("Wrong cradentials");
+        }
+    }
 }

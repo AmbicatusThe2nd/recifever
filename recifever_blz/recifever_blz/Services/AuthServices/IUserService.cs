@@ -7,5 +7,6 @@ namespace recifever_blz.Services.AuthServices
         Task<IEnumerable<User>> GetAll();
         Task<User> GetUserById(string id);
         Task<HttpResponseMessage> CreateUser(RegistrationModel newUser);
+        Task<HttpResponseMessage> AuthWebToken(LoginModel loginData);
     }
 }

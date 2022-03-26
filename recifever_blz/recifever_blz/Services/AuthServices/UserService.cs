@@ -1,5 +1,5 @@
 ﻿using recifever_blz.Models;
-using System.Net;
+using System.Net.Http.Formatting;
 using System.Net.Http.Json;
 
 namespace recifever_blz.Services.AuthServices
@@ -13,6 +13,11 @@ namespace recifever_blz.Services.AuthServices
         {
             this._httpClient = httpClient;
             this._configuration = configuration;
+        }
+
+        public async Task<HttpResponseMessage> AuthWebToken(LoginModel loginData)
+        {
+            return await _httpClient.PostAsJsonAsync(_configuration["APIs:recifeverAPIUrl"] + "/login", loginData); 
         }
 
         public async Task<HttpResponseMessage> CreateUser(RegistrationModel newUser)
