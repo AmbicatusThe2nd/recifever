@@ -1,5 +1,4 @@
 ﻿using recifever_blz.Models;
-using System.Net;
 
 namespace recifever_blz.Services.AuthServices
 {
@@ -7,6 +6,6 @@ namespace recifever_blz.Services.AuthServices
     {
         Task<IEnumerable<User>> GetAll();
         Task<User> GetUserById(string id);
-        Task<HttpStatusCode> CreateUser(RegistrationModel newUser);
+        Task<HttpResponseMessage> CreateUser(RegistrationModel newUser);
     }
 }

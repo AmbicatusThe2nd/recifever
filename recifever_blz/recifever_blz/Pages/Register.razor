@@ -1,6 +1,9 @@
 ﻿@page "/register"
 @layout FormLayout
+@inject NavigationManager NavigationManager
+@using System.Net
 @using recifever_blz.Models
+@using recifever_blz.Services.AuthServices;
 
 <EditForm Model="@RegisterForm" OnValidSubmit="@RegisterSubmit">
     <div class="row">
@@ -78,8 +81,21 @@
 </EditForm>
 
 @code {
+    [Inject]
+    public IUserService UserService { get; set; } = null!;
 
     private RegistrationModel RegisterForm = new RegistrationModel();
 
-    private void RegisterSubmit() => Console.WriteLine(RegisterForm.firstName);
+    private async void RegisterSubmit()
+    {
+        HttpResponseMessage response = (await UserService.CreateUser(RegisterForm));
+        if(response.StatusCode == HttpStatusCode.Created)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            Console.WriteLine("Somthing went wrong please try again later");
+        }
+    }
 }

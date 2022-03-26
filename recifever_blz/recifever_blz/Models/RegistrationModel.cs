@@ -23,6 +23,6 @@ namespace recifever_blz.Models
         [Compare("password", ErrorMessage = "The passwords do not match")]
         public string? passworRepeat { get; set; }
         [Required(ErrorMessage = "This field is required")]
-        public DateOnly? birthDate { get; set; }
+        public DateTime? birthDate { get; set; }
     }
 }

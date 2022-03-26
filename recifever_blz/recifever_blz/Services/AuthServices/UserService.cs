@@ -15,11 +15,10 @@ namespace recifever_blz.Services.AuthServices
             this._configuration = configuration;
         }
 
-        public async Task<HttpStatusCode> CreateUser(RegistrationModel newUser)
+        public async Task<HttpResponseMessage> CreateUser(RegistrationModel newUser)
         {
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync(_configuration["APIs:recifeverAPIUrl"] + "/api/User/"
+            return await _httpClient.PostAsJsonAsync(_configuration["APIs:recifeverAPIUrl"] + "/api/User/"
                 , newUser);
-            return response.StatusCode;
         }
 
         public async Task<IEnumerable<User>> GetAll() // This might get deleted or implemented later
