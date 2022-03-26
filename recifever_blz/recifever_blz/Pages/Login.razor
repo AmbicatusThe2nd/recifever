@@ -48,6 +48,15 @@
                     <NavLink class="mt-1 ml-0 btn btn-outline-dark" href="register"> Register </NavLink>
                 </div>
             </div>
+            <h1> @WrongData </h1>
+            @if(WrongData == 1)
+            {
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="alert alert-primary mt-3"> Either you entered the wrong email or the wrong password </div>
+                    </div>
+                </div>
+            }
 </EditForm>
 
 @code {
@@ -55,9 +64,11 @@
     public IUserService UserService { get; set; } = null!;
 
     private LoginModel LoginForm = new LoginModel();
+    private int WrongData = 0; 
 
     private async void LoginSubmit()
     {
+        WrongData = 0;
         HttpResponseMessage response = (await UserService.AuthWebToken(LoginForm));
         if (response.StatusCode == HttpStatusCode.OK)
         {
@@ -66,7 +77,8 @@
         }
         else
         {
-            Console.WriteLine("Wrong cradentials");
+            Console.WriteLine("This has happened");
+            WrongData ++;
         }
     }
 }
