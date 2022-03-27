@@ -94,6 +94,9 @@ input[type="color"]:focus,
     outline: 0 none !important;
 }
 
+.table-dark {
+    --bs-table-bg: #343a40 !important;
+}
 
 #blazor-error-ui {
     background: lightyellow;

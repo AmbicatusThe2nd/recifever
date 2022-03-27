@@ -49,6 +49,29 @@ else
                 </div> 
             </nav>
         </div>
+        <div class="container-fluid mt-5">
+           <table class="table table-lg">
+              <thead>
+                <tr class="table-dark">
+                  <th scope="col">#</th>
+                  <th scope="col">Ingredient</th>
+                  <th scope="col">Ammount</th>
+                  <th scope="col">Measurement</th>
+                </tr>
+              </thead>
+              <tbody>
+                    @for(int i=0; i < CurrentRecipe.Ingredients.Length; i++)
+                    {
+                        <tr>
+                            <th class="row"> @(i+1) </th>
+                            <td> @CurrentRecipe.Ingredients[i].Ingredient </td>
+                            <td> @CurrentRecipe.Ingredients[i].Amount </td>
+                            <td> @CurrentRecipe.Ingredients[i].Measurement </td>
+                        </tr>
+                    }
+              </tbody>
+            </table>
+        </div>
     </div>
     
 }
