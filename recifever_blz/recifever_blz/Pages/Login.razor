@@ -7,7 +7,7 @@
 @using System.Net;
 
 
-<EditForm Model="@LoginForm" OnValidSubmit="@LoginSubmit">
+<EditForm Model="@LoginForm" OnValidSubmit="@LoginSubmit" OnInvalidSubmit="@OnError">
     <div class="row">
         <div class="col text-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250" fill="currentColor" class="m-3 bi bi-yin-yang" viewBox="0 0 16 16">
@@ -48,10 +48,11 @@
                 <div class="col text-center">
                     <button class="mt-1 btn btn-outline-primary" type="submit"> Login </button>
                     <NavLink class="mt-1 ml-0 btn btn-outline-dark" href="register"> Register </NavLink>
+                    <button class="btn btn-outline-info" @onclick="OnCounterClick"> Click </button>
                 </div>
             </div>
-            <h1> @WrongData </h1>
-            @if(WrongData == 1)
+            <h1> @counter </h1>
+            @if(WrongData)
             {
                 <div class="row">
                     <div class="col text-center">
@@ -66,11 +67,12 @@
     public IUserService UserService { get; set; } = null!;
 
     private LoginModel LoginForm = new LoginModel();
-    private int WrongData = 0; 
+    private bool WrongData = false;
+    private int counter = 0;
 
     private async void LoginSubmit()
     {
-        WrongData = 0;
+        WrongData = false;
         HttpResponseMessage response = (await UserService.AuthWebToken(LoginForm));
         if (response.StatusCode == HttpStatusCode.OK)
         {
@@ -81,7 +83,17 @@
         else
         {
             Console.WriteLine("This has happened");
-            WrongData ++;
+            OnError();
         }
+    }
+
+    private void OnError()
+    {
+        WrongData = true;
+    }
+
+    private void OnCounterClick()
+    {
+        WrongData = true;
     }
 }
