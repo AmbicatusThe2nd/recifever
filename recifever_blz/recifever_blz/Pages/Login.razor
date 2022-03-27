@@ -1,5 +1,7 @@
 ﻿@page "/login"
 @layout FormLayout
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JsRuntime
 @using recifever_blz.Models
 @using recifever_blz.Services.AuthServices;
 @using System.Net;
@@ -73,7 +75,8 @@
         if (response.StatusCode == HttpStatusCode.OK)
         {
             AuthWebToken jsonWebToken = await response.Content.ReadAsAsync<AuthWebToken>();
-            Console.WriteLine(jsonWebToken.Token);
+            await JsRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", jsonWebToken.Token);
+            NavigationManager.NavigateTo("/");
         }
         else
         {
