@@ -19,8 +19,8 @@ else
     <div class="container-fluid text-center">
         <h1> @CurrentRecipe.Title </h1>
     </div>
-    <div class="container-sm container-fluid text-center">
-        <div id="carouselexamplecontrols" class="carousel slide" data-bs-ride="carousel">
+    <div class="container-sm container-fluid">
+        <div id="carouselexamplecontrols" class="carousel slide text-center" data-bs-ride="carousel">
           <div class="carousel-inner" style="max-width:100%; max-height:300px !important;">
                 @foreach(string photo in CurrentRecipe.Photos)
                 {
@@ -38,7 +38,7 @@ else
             <span class="visually-hidden">next</span>
           </button>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid text-center">
             <nav class="navbar navbar-dark bg-custom">
                 <span class="ms-3 navbar-brand"> @RecipeCreator.firstName @RecipeCreator.lastName </span>
                 <div class="my-2 my-lg-0">
@@ -50,7 +50,7 @@ else
                 </div> 
             </nav>
         </div>
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-5 text-center">
            <table class="table table-lg">
               <thead>
                 <tr class="table-dark">
@@ -72,6 +72,17 @@ else
                     }
               </tbody>
             </table>
+        </div>
+        <div class="container-fluid mt-5 mb-5">
+            <ul class="list-group list-group-flush">
+                @for(int i=0; i<CurrentRecipe.Steps.Length; i++)
+                {
+                    <li class="list-group-item">
+                        <b class="me-5"> Step: @(i+1) </b>
+                        @CurrentRecipe.Steps[i]
+                    </li>
+                }
+            </ul>
         </div>
     </div>
     
