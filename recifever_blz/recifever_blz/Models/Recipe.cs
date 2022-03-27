@@ -6,6 +6,7 @@
         public string Title { get; set; } = null!;
         public string UserId { get; set; } = null!;
         public double PreperationTime { get; set; }
+        public double CookingTime { get; set; }
         public double Calories { get; set; }
         public int Difficulty { get; set; }
         public string DailyMeal { get; set; } = null!;
