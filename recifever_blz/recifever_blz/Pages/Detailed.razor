@@ -1,6 +1,7 @@
 ﻿@page "/recipe/{recipeId}"
 @inject NavigationManager NavManager
 @using recifever_blz.Services.RecipeServices
+@using recifever_blz.Services.AuthServices
 @using recifever_blz.Models;
 
 <PageTitle> Recifever Blazor </PageTitle>
@@ -39,7 +40,7 @@ else
         </div>
         <div class="container-fluid">
             <nav class="navbar navbar-dark bg-custom">
-                <span class="ms-3 navbar-brand"> user_account </span>
+                <span class="ms-3 navbar-brand"> @RecipeCreator.firstName @RecipeCreator.lastName </span>
                 <div class="my-2 my-lg-0">
                     <span class="label label-default navbar-brand"> @CurrentRecipe.PreperationTime min </span>
                     <span class="label label-default navbar-brand"> @CurrentRecipe.CookingTime min </span>
@@ -79,15 +80,22 @@ else
 @code {
     [Parameter]
     public string? recipeId { get; set; } = null!;
+
     [Inject]
     public IRecipeService? RecipeService { get; set; } = null!;
+
+    [Inject]
+    public IUserService? UserService { get; set; } = null!;
+
     public Recipe? CurrentRecipe { get; set; } = null!;
+    public User? RecipeCreator { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             CurrentRecipe = (await RecipeService.GetRecipeAsync(recipeId));
+            RecipeCreator = (await UserService.GetUserById(CurrentRecipe.UserId));
             Console.WriteLine(CurrentRecipe.Title);
         }
         catch
