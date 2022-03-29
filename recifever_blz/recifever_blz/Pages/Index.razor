@@ -1,10 +1,17 @@
 ﻿@page "/"
-@using recifever_blz.Services.RecipeServices
-@using recifever_blz.Models;
+@attribute [Authorize]
+@inject NavigationManager NavigationManager;
 
 
 <PageTitle> Recifever Blazor </PageTitle>
-
+@*<AuthorizeView>
+    <Authorized>
+        <h1> Hello logged in user </h1>
+    </Authorized>
+    <NotAuthorized>
+        <h1> You are currently not logged in </h1>
+    </NotAuthorized>
+</AuthorizeView>*@
 <h3> Explore your favorite meals! </h3>
 
 @if (Recipes == null)
@@ -31,12 +38,17 @@ else
 }
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; } = null!;
+
     public List<Recipe> Recipes { get; set; } = null!;
     [Inject]
     public IRecipeService RecipeService { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
+        //AuthenticationState authState = await authenticationState;
+        //var user = authState.User;
         Recipes = (await RecipeService.GetAllRecipesAsync()).ToList();
     }
 }

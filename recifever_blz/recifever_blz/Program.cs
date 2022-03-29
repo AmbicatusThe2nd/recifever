@@ -3,12 +3,19 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using recifever_blz;
 using recifever_blz.Services.RecipeServices;
 using recifever_blz.Services.AuthServices;
+using Microsoft.AspNetCore.Components.Authorization;
+using recifever_blz.Providers;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+builder.Services.AddOptions();
+builder.Services.AddAuthorizationCore();
+
+builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 
 builder.Services.AddHttpClient<IRecipeService, RecipeService>(client =>
 {
@@ -19,5 +26,7 @@ builder.Services.AddHttpClient<IUserService, UserService>(client =>
 {
     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
 });
+
+
 
 await builder.Build().RunAsync();
