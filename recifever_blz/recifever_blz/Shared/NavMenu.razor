@@ -10,7 +10,7 @@
 </a>
 
 <div class="my-2 my-lg-0">
-    <span class="label label-default navbar-brand"> user_account </span>
+    <span class="label label-default navbar-brand"> @CurrentUser </span>
     <button class="btn btn-outline-info" @onclick="OnLogout"> Logout </button>
     <a class="btn btn-outline-primary me-3" href="add-new"> Add new </a>
 </div>
@@ -19,9 +19,16 @@
     [CascadingParameter]
     private Task<AuthenticationState> authenticationState { get; set; } = null!;
     private bool collapseNavMenu = true;
+    public string CurrentUser { get; set; } = null!;
 
     public NavMenu()
     {
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await authenticationState;
+        CurrentUser = authState.User.Identity.Name;
     }
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -41,4 +48,5 @@
         await localStorage.RemoveItemAsync("authToken");
         NavigationManager.NavigateTo("/login");
     }
+
 }
