@@ -4,14 +4,7 @@
 
 
 <PageTitle> Recifever Blazor </PageTitle>
-@*<AuthorizeView>
-    <Authorized>
-        <h1> Hello logged in user </h1>
-    </Authorized>
-    <NotAuthorized>
-        <h1> You are currently not logged in </h1>
-    </NotAuthorized>
-</AuthorizeView>*@
+
 <h3> Explore your favorite meals! </h3>
 
 @if (Recipes == null)
@@ -44,11 +37,25 @@ else
     public List<Recipe> Recipes { get; set; } = null!;
     [Inject]
     public IRecipeService RecipeService { get; set; } = null!;
+    [Inject]
+    public IJSRuntime JSRuntime { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
         //AuthenticationState authState = await authenticationState;
         //var user = authState.User;
         Recipes = (await RecipeService.GetAllRecipesAsync()).ToList();
+        var token = await GetToken();
+        var handler = new JwtSecurityTokenHandler();
+        var jwtSecurityToken = handler.ReadJwtToken(token);
+        var name = jwtSecurityToken.Claims.First(x => x.Type == "userName").Value;
+        var userId = jwtSecurityToken.Claims.First(x => x.Type == "userId").Value;
+        Console.WriteLine(name);
+        Console.WriteLine(userId);
     }
+
+    private async Task<string> GetToken()
+    {
+        return await JSRuntime.InvokeAsync<string>("localStorage.getItem", "authToken");
+    } 
 }
