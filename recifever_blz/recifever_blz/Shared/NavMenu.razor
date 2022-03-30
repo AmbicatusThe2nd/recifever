@@ -1,4 +1,4 @@
-﻿@inject IJSRuntime JSRuntime
+﻿@inject ILocalStorageService localStorage
 @inject NavigationManager NavigationManager;
 
 
@@ -16,6 +16,8 @@
 </div>
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; } = null!;
     private bool collapseNavMenu = true;
 
     public NavMenu()
@@ -36,7 +38,7 @@
 
     private async void OnLogout()
     {
-        await JSRuntime.InvokeAsync<string>("localStorage.removeItem", "authToken");
+        await localStorage.RemoveItemAsync("authToken");
         NavigationManager.NavigateTo("/login");
     }
 }

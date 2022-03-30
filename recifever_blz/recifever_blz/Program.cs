@@ -5,6 +5,7 @@ using recifever_blz.Services.RecipeServices;
 using recifever_blz.Services.AuthServices;
 using Microsoft.AspNetCore.Components.Authorization;
 using recifever_blz.Providers;
+using Blazored.LocalStorage;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -14,6 +15,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
+builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 

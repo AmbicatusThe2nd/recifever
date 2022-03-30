@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.JSInterop;
+﻿using Microsoft.AspNetCore.Components.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Blazored.LocalStorage;
 
 namespace recifever_blz.Providers
 {
     public class AuthStateProvider : AuthenticationStateProvider
     {
-        [Inject]
-        public IJSRuntime JSRuntime { get; set; } = null!;
+        private readonly ILocalStorageService _localStorageService;
+
+        public AuthStateProvider(ILocalStorageService localStorageService)
+        {
+            _localStorageService = localStorageService;
+        }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
@@ -31,14 +34,7 @@ namespace recifever_blz.Providers
 
         private async Task<string> GetToken()
         {
-            try
-            {
-                return await JSRuntime.InvokeAsync<string>("localStorage.getItem", "authToken");
-            }
-            catch
-            {
-                return string.Empty;
-            }
+            return await _localStorageService.GetItemAsync<string>("authToken"); ;
         } 
 
         private JwtSecurityToken DecodeToken(string token)
