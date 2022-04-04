@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -8,10 +10,10 @@ function App() {
         <header className="App-header">
           <Routes>
             <Route exact path="/" element={
-              <h1> Hello </h1>
+              <Home />
             } />
             <Route path='*' element={
-              <h1> Not found </h1>
+              <NotFound /> 
             } />
           </Routes>
         </header>
