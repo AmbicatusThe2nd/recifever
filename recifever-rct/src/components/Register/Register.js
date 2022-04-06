@@ -19,40 +19,42 @@ const Register = () => {
   }
 
   return (
-    <div className={styles.Register} data-testid="Register">
-      <h1> Register </h1>
-      <div className='form' style={{ padding: 20 }}>
-        <form onSubmit={handleSubmit}>
-          <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
-            <Grid item>
-              <TextField name='firstName' value={inputs.firstName} onChange={handleChange} label="Firstname" variant='outlined' />
+    <div className='component-content'>
+      <div className={styles.Register} data-testid="Register">
+        <h1> Register </h1>
+        <div className='form' style={{ padding: 20 }}>
+          <form onSubmit={handleSubmit}>
+            <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
+              <Grid item>
+                <TextField name='firstName' value={inputs.firstName} onChange={handleChange} label="Firstname" variant='outlined' />
+              </Grid>
+              <Grid item>
+                <TextField name='lastName' value={inputs.lastName} onChange={handleChange} label="Lastname" variant='outlined' />
+              </Grid>
             </Grid>
-            <Grid item>
-              <TextField name='lastName' value={inputs.lastName} onChange={handleChange} label="Lastname" variant='outlined' />
+            <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
+              <Grid item>
+                <TextField name='email' value={inputs.email} onChange={handleChange} label="Email" variant='outlined' />
+              </Grid>
+              <Grid item>
+                <TextField name='dateOfBirth' value={inputs.dateOfBirth} onChange={handleChange} label="Date of birth" type='date' defaultValue="1999-06-11" variant='outlined' />
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
-            <Grid item>
-              <TextField name='email' value={inputs.email} onChange={handleChange} label="Email" variant='outlined' />
+            <Grid style={{ marginBottom: '20px' }} justifyContent="center" container spacing={2}>
+              <Grid item>
+                <TextField name='password' value={inputs.password} onChange={handleChange} label="Password" type="password" variant='outlined' />
+              </Grid>
+              <Grid item>
+                <TextField name='passwordRepeat' value={inputs.passwordRepeat} onChange={handleChange} label="Repeat password" type="password" variant='outlined' />
+              </Grid>
             </Grid>
-            <Grid item>
-              <TextField name='dateOfBirth' value={inputs.dateOfBirth} onChange={handleChange} label="Date of birth" type='date' defaultValue="1999-06-11" variant='outlined' />
+            <Grid alignItems="center" direction="column" spacing={0} justifyContent="center" container>
+              <Grid item>
+                <Button type="submit" variant='contained'> Register </Button>
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid style={{ marginBottom: '20px' }} justifyContent="center" container spacing={2}>
-            <Grid item>
-              <TextField name='password' value={inputs.password} onChange={handleChange} label="Password" type="password" variant='outlined' />
-            </Grid>
-            <Grid item>
-              <TextField name='passwordRepeat' value={inputs.passwordRepeat} onChange={handleChange} label="Repeat password" type="password" variant='outlined' />
-            </Grid>
-          </Grid>
-          <Grid alignItems="center" direction="column" spacing={0} justifyContent="center" container>
-            <Grid item>
-              <Button type="submit" variant='contained'> Register </Button>
-            </Grid>
-          </Grid>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

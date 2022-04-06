@@ -21,27 +21,29 @@ const Login = () => {
   }
 
   return (
-    <div className={styles.Login} data-testid="Login">
-      <h1> Login </h1>
-      <div className='form' style={{ padding: 20 }}>
-        <form onSubmit={loginFormSubmit}>
-          <Grid container direction="column" style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
-            <Grid item>
-              <TextField name='email' value={inputs.email} onChange={handleChange} label='Email' variant='outlined' />
+    <div className='component-content'>
+      <div className={styles.Login} data-testid="Login">
+        <h1> Login </h1>
+        <div className='form' style={{ padding: 20 }}>
+          <form onSubmit={loginFormSubmit}>
+            <Grid container direction="column" style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
+              <Grid item>
+                <TextField name='email' value={inputs.email} onChange={handleChange} label='Email' variant='outlined' />
+              </Grid>
+              <Grid item>
+                <TextField name='password' value={inputs.password} onChange={handleChange} type='password' label='Password' variant='outlined' />
+              </Grid>
             </Grid>
-            <Grid item>
-              <TextField name='password' value={inputs.password} onChange={handleChange} type='password' label='Password' variant='outlined' />
+            <Grid container spacing={2} justifyContent="center" alignContent="center">
+              <Grid item>
+                <Button type='submit' variant='contained'> Login </Button>
+              </Grid>
+              <Grid item>
+                <Button component={Link} to="/register" color='secondary' variant='contained'> Register </Button>
+              </Grid>
             </Grid>
-          </Grid>
-          <Grid container spacing={2} justifyContent="center" alignContent="center">
-            <Grid item>
-              <Button type='submit' variant='contained'> Login </Button>
-            </Grid>
-            <Grid item>
-              <Button component={Link} to="/register" color='secondary' variant='contained'> Register </Button>
-            </Grid>
-          </Grid>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );
