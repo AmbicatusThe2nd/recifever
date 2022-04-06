@@ -4,11 +4,13 @@ import Home from './components/Home/Home';
 import NotFound from './components/NotFound/NotFound';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Navbar />
         <header className="App-header">
           <Routes>
             <Route exact path="/" element={
