@@ -12,7 +12,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 
 const pages = ['Add new'];
@@ -62,8 +62,8 @@ const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
+              <Link to="/add-new" key={page}>
+                <Button
                 variant="contained"
                 color="secondary"
                 onClick={handleCloseNavMenu}
@@ -71,6 +71,7 @@ const Navbar = () => {
               >
                 {page}
               </Button>
+              </Link>
             ))}
           </Box>
 
