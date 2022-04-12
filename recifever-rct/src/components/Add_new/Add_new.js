@@ -79,7 +79,7 @@ const Add_new = () => {
                 </Grid>
               </Grid>
               {ingredientValues.map((element, index) => {
-                return (<Grid container key={index} style={{ marginTop: '0.1px' }} justifyContent="center" spacing={2}>
+                return (<Grid container key={index} style={{ marginTop: '0.1px' }} justifyContent="center" spacing={1}>
                   <Grid item>
                     <TextField name='dailyMeal' value={element.ingredient || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Ingredient' variant='outlined' />
                   </Grid>
@@ -89,12 +89,16 @@ const Add_new = () => {
                   <Grid item>
                     <TextField name='dailyMeal' value={element.measurement || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Measurement' variant='outlined' />
                   </Grid>
-                  <Grid item>
-                    <IconButton aria-label='delete' onClick={() => removeIngredientFields(index)}>
-                      <DeleteIcon color='error' />
-                    </IconButton>
-                  </Grid>
-                </Grid>)
+                  {index > 0 ? (
+                    <Grid item>
+                      <IconButton aria-label='delete' onClick={() => removeIngredientFields(index)}>
+                        <DeleteIcon color='error' />
+                      </IconButton>
+                    </Grid>
+                  ) : null
+                  }
+                </Grid>
+                )
               })}
               <Grid container justifyContent="right">
                 <Grid item>
