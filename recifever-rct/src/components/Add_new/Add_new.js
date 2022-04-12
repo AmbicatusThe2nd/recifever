@@ -56,7 +56,7 @@ const Add_new = () => {
       <div className='component-content'>
         <div className={styles.Add_new} data-testid="Add_new">
           <h1> Add a new recipe </h1>
-          <div className='form' style={{ padding: 20 }}>
+          <div className='form'>
             <form>
               <Grid container direction='column' style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
                 <Grid item>
@@ -79,28 +79,30 @@ const Add_new = () => {
                 </Grid>
               </Grid>
               {ingredientValues.map((element, index) => {
-               return (<Grid container  key={index} style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
-                    <Grid item>
-                      <TextField name='dailyMeal' value={element.ingredient || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Ingredient' variant='outlined' />
-                    </Grid>
-                    <Grid item>
-                      <TextField name='dailyMeal' type='number' value={element.amount || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Amount' variant='outlined' />
-                    </Grid>
-                    <Grid item>
-                      <TextField name='dailyMeal' value={element.measurement || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Measurement' variant='outlined' />
-                    </Grid>
-                    <Grid item>
-                      <IconButton aria-label='addnew' onClick={() => addIngredientFields()}>
-                        <AddIcon />
-                      </IconButton>
-                    </Grid>
-                    <Grid item>
-                      <IconButton aria-label='delete' onClick={() => removeIngredientFields(index)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </Grid>
-                  </Grid>)
+                return (<Grid container key={index} style={{ marginTop: '0.1px' }} justifyContent="center" spacing={2}>
+                  <Grid item>
+                    <TextField name='dailyMeal' value={element.ingredient || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Ingredient' variant='outlined' />
+                  </Grid>
+                  <Grid item>
+                    <TextField name='dailyMeal' type='number' value={element.amount || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Amount' variant='outlined' />
+                  </Grid>
+                  <Grid item>
+                    <TextField name='dailyMeal' value={element.measurement || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Measurement' variant='outlined' />
+                  </Grid>
+                  <Grid item>
+                    <IconButton aria-label='delete' onClick={() => removeIngredientFields(index)}>
+                      <DeleteIcon color='error' />
+                    </IconButton>
+                  </Grid>
+                </Grid>)
               })}
+              <Grid container justifyContent="right">
+                <Grid item>
+                  <IconButton aria-label='addnew' onClick={() => addIngredientFields()}>
+                    <AddIcon color='primary' />
+                  </IconButton>
+                </Grid>
+              </Grid>
               <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
                 <Grid item>
                   <TextareaAutosize
