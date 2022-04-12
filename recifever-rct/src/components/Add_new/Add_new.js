@@ -39,7 +39,7 @@ const Add_new = () => {
     newIngredientValues[index][element.target.name] = element.target.value;
     setIngredientValues(newIngredientValues);
   }
-
+  
   const addIngredientFields = () => {
     setIngredientValues([...ingredientValues, { ingredient: '', amount: '', measurement: '' }]);
   }
@@ -81,13 +81,13 @@ const Add_new = () => {
               {ingredientValues.map((element, index) => {
                 return (<Grid container key={index} style={{ marginTop: '0.1px' }} justifyContent="center" spacing={1}>
                   <Grid item>
-                    <TextField name='dailyMeal' value={element.ingredient || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Ingredient' variant='outlined' />
+                    <TextField name='ingredient' value={inputs.ingredient} checked={ !!inputs.ingredient } onChange={(e) => handleChangeIngredient(index, e)} label='Ingredient' variant='outlined' />
                   </Grid>
                   <Grid item>
-                    <TextField name='dailyMeal' type='number' value={element.amount || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Amount' variant='outlined' />
+                    <TextField name='ammount' type='number' value={inputs.amount} checked={ !!inputs.ammount } onChange={(e) => handleChangeIngredient(index, e)} label='Amount' variant='outlined' />
                   </Grid>
                   <Grid item>
-                    <TextField name='dailyMeal' value={element.measurement || ''} onChange={(e) => handleChangeIngredient(index, e)} label='Measurement' variant='outlined' />
+                    <TextField name='measurment' value={inputs.measurement} checked={ !!inputs.ingredient } onChange={(e) => handleChangeIngredient(index, e)} label='Measurement' variant='outlined' />
                   </Grid>
                   {index > 0 ? (
                     <Grid item>
