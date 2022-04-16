@@ -39,7 +39,7 @@ const Add_new = () => {
     newIngredientValues[index][element.target.name] = element.target.value;
     setIngredientValues(newIngredientValues);
   }
-  
+
   const addIngredientFields = () => {
     setIngredientValues([...ingredientValues, { ingredient: '', amount: '', measurement: '' }]);
   }
@@ -48,6 +48,24 @@ const Add_new = () => {
     let newIngredientValues = [...ingredientValues];
     newIngredientValues.splice(index, 1);
     setIngredientValues(newIngredientValues);
+  }
+
+  const [stepValues, setStepValues] = useState([{ step: '' }])
+
+  const handleChangeStep = (index, element) => {
+    let newStepValues = [...stepValues]
+    newStepValues[index][element.target.name] = element.target.value;
+    setStepValues(newStepValues);
+  }
+
+  const addStepFields = () => {
+    setStepValues([...stepValues, { step: '' }]);
+  }
+
+  const removeStepFields = (index) => {
+    let newStepValues = [...stepValues];
+    newStepValues.splice(index, 1);
+    setStepValues(newStepValues);
   }
 
   return (
@@ -81,13 +99,13 @@ const Add_new = () => {
               {ingredientValues.map((element, index) => {
                 return (<Grid container key={index} style={{ marginTop: '0.1px' }} justifyContent="center" spacing={1}>
                   <Grid item>
-                    <TextField name='ingredient' value={inputs.ingredient} checked={ !!inputs.ingredient } onChange={(e) => handleChangeIngredient(index, e)} label='Ingredient' variant='outlined' />
+                    <TextField name='ingredient' value={inputs.ingredient} checked={!!inputs.ingredient} onChange={(e) => handleChangeIngredient(index, e)} label='Ingredient' variant='outlined' />
                   </Grid>
                   <Grid item>
-                    <TextField name='ammount' type='number' value={inputs.amount} checked={ !!inputs.ammount } onChange={(e) => handleChangeIngredient(index, e)} label='Amount' variant='outlined' />
+                    <TextField name='ammount' type='number' value={inputs.amount} checked={!!inputs.ammount} onChange={(e) => handleChangeIngredient(index, e)} label='Amount' variant='outlined' />
                   </Grid>
                   <Grid item>
-                    <TextField name='measurment' value={inputs.measurement} checked={ !!inputs.ingredient } onChange={(e) => handleChangeIngredient(index, e)} label='Measurement' variant='outlined' />
+                    <TextField name='measurment' value={inputs.measurement} checked={!!inputs.ingredient} onChange={(e) => handleChangeIngredient(index, e)} label='Measurement' variant='outlined' />
                   </Grid>
                   {index > 0 ? (
                     <Grid item>
@@ -107,23 +125,30 @@ const Add_new = () => {
                   </IconButton>
                 </Grid>
               </Grid>
-              <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
+              {stepValues.map((element, index) => {
+                return (<Grid container key={index} style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
+                  <Grid item>
+                    <TextareaAutosize
+                      maxRows={10}
+                      aria-label="Adding a step"
+                      placeholder="Adding a step"
+                      style={{ width: 200, height: 50 }}
+                    />
+                  </Grid>
+                  {index > 0 ? (
+                    <Grid item>
+                      <IconButton aria-label='delete' onClick={() => removeStepFields(index)}>
+                        <DeleteIcon color='error' />
+                      </IconButton>
+                    </Grid>
+                  ) : null
+                  }
+                </Grid>)
+              })}
+              <Grid container justifyContent="center">
                 <Grid item>
-                  <TextareaAutosize
-                    maxRows={10}
-                    aria-label="Adding a step"
-                    placeholder="Adding a step"
-                    style={{ width: 200, height: 50 }}
-                  />
-                </Grid>
-                <Grid item>
-                  <IconButton aria-label='addnew'>
-                    <AddIcon />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <IconButton aria-label='delete'>
-                    <DeleteIcon />
+                  <IconButton aria-label='addnew' onClick={() => addStepFields()}>
+                    <AddIcon color='primary' />
                   </IconButton>
                 </Grid>
               </Grid>
