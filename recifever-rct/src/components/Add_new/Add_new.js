@@ -102,7 +102,7 @@ const Add_new = () => {
                   <TextField type='number' name='calories' value={inputs.calories} label='Calories' variant='outlined' />
                 </Grid>
                 <Grid item>
-                  <FormControl fullWidth>
+                  <FormControl style={{ width: '35%' }}>
                     <InputLabel id="difficulty-label"> Difficulty </InputLabel>
                     <Select
                       labelId='difficulty-label'
@@ -110,16 +110,16 @@ const Add_new = () => {
                       value={inputs.difficulty}
                       label='difficulty'
                       onChange={difficultyHandleChange}>
-                        <MenuItem value={1}> Easy </MenuItem>
-                        <MenuItem value={2}> Medium </MenuItem>
-                        <MenuItem value={3}> Hard </MenuItem>
-                        <MenuItem value={4}> Extreme </MenuItem>
-                        <MenuItem value={5}> Gordon Ramsay </MenuItem>
-                      </Select>
+                      <MenuItem value={1}> Easy </MenuItem>
+                      <MenuItem value={2}> Medium </MenuItem>
+                      <MenuItem value={3}> Hard </MenuItem>
+                      <MenuItem value={4}> Extreme </MenuItem>
+                      <MenuItem value={5}> Gordon Ramsay </MenuItem>
+                    </Select>
                   </FormControl>
                 </Grid>
                 <Grid item>
-                  <FormControl fullWidth>
+                  <FormControl style={{ width: '35%' }}>
                     <InputLabel id='dailyMeal-label'> Daily meal </InputLabel>
                     <Select
                       labelId='dailyMeal-label'
@@ -127,12 +127,12 @@ const Add_new = () => {
                       value={inputs.dailyMeal}
                       label='Daily Meal'
                       onChange={dailyMealHandleChange}>
-                        <MenuItem value={1}> Breakfest </MenuItem>
-                        <MenuItem value={2}> Lunch </MenuItem>
-                        <MenuItem value={3}> Dinner </MenuItem>
-                        <MenuItem value={4}> Brunch </MenuItem>
-                        <MenuItem value={5}> Snack </MenuItem>
-                      </Select>
+                      <MenuItem value={1}> Breakfest </MenuItem>
+                      <MenuItem value={2}> Lunch </MenuItem>
+                      <MenuItem value={3}> Dinner </MenuItem>
+                      <MenuItem value={4}> Brunch </MenuItem>
+                      <MenuItem value={5}> Snack </MenuItem>
+                    </Select>
                   </FormControl>
                 </Grid>
               </Grid>
@@ -185,11 +185,16 @@ const Add_new = () => {
                   }
                 </Grid>)
               })}
-              <Grid container justifyContent="center">
+              <Grid container justifyContent="center" style={{ marginTop: '-30px' }}>
                 <Grid item>
                   <IconButton aria-label='addnew' onClick={() => addStepFields()}>
                     <AddIcon color='primary' />
                   </IconButton>
+                </Grid>
+              </Grid>
+              <Grid container justifyContent="center" style={{ marginBottom: '20px', marginTop: '20px' }}>
+                <Grid item>
+                  <Button variant='contained' color='primary'> Add new recipe </Button>
                 </Grid>
               </Grid>
             </form>
