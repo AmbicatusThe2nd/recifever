@@ -74,6 +74,12 @@ const Add_new = () => {
     setDifficulty(event.target.value);
   }
 
+  const [getDailyMeal, setDailyMeal] = useState('');
+
+  const dailyMealHandleChange = (event) => {
+    setDailyMeal(event.target.value);
+  }
+
   return (
     <>
       <Navbar />
@@ -113,7 +119,21 @@ const Add_new = () => {
                   </FormControl>
                 </Grid>
                 <Grid item>
-                  <TextField name='dailyMeal' value={inputs.dailyMeal} label='Daily Meal' variant='outlined' />
+                  <FormControl fullWidth>
+                    <InputLabel id='dailyMeal-label'> Daily meal </InputLabel>
+                    <Select
+                      labelId='dailyMeal-label'
+                      id='dailyMeal-select'
+                      value={inputs.dailyMeal}
+                      label='Daily Meal'
+                      onChange={dailyMealHandleChange}>
+                        <MenuItem value={1}> Breakfest </MenuItem>
+                        <MenuItem value={2}> Lunch </MenuItem>
+                        <MenuItem value={3}> Dinner </MenuItem>
+                        <MenuItem value={4}> Brunch </MenuItem>
+                        <MenuItem value={5}> Snack </MenuItem>
+                      </Select>
+                  </FormControl>
                 </Grid>
               </Grid>
               {ingredientValues.map((element, index) => {
