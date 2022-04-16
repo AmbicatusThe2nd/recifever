@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import styles from './Add_new.module.css';
-import { Button, TextField, Grid, MenuItem, IconButton } from '@mui/material';
+import { Button, TextField, Grid, MenuItem, IconButton, FormControl, InputLabel, Select } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
@@ -68,6 +68,12 @@ const Add_new = () => {
     setStepValues(newStepValues);
   }
 
+  const [getDifficulty, setDifficulty] = useState('');
+
+  const difficultyHandleChange = (event) => {
+    setDifficulty(event.target.value);
+  }
+
   return (
     <>
       <Navbar />
@@ -90,7 +96,21 @@ const Add_new = () => {
                   <TextField type='number' name='calories' value={inputs.calories} label='Calories' variant='outlined' />
                 </Grid>
                 <Grid item>
-                  <TextField name='difficulty' value={inputs.difficulty} label='Difficulty' variant='outlined' />
+                  <FormControl fullWidth>
+                    <InputLabel id="difficulty-label"> Difficulty </InputLabel>
+                    <Select
+                      labelId='difficulty-label'
+                      id='difficulty-select'
+                      value={inputs.difficulty}
+                      label='difficulty'
+                      onChange={difficultyHandleChange}>
+                        <MenuItem value={1}> Easy </MenuItem>
+                        <MenuItem value={2}> Medium </MenuItem>
+                        <MenuItem value={3}> Hard </MenuItem>
+                        <MenuItem value={4}> Extreme </MenuItem>
+                        <MenuItem value={5}> Gordon Ramsay </MenuItem>
+                      </Select>
+                  </FormControl>
                 </Grid>
                 <Grid item>
                   <TextField name='dailyMeal' value={inputs.dailyMeal} label='Daily Meal' variant='outlined' />
