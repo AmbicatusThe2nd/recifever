@@ -26,15 +26,15 @@ const Register = () => {
           <form onSubmit={handleSubmit}>
             <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
               <Grid item>
-                <TextField name='firstName' value={inputs.firstName} onChange={handleChange} label="Firstname" variant='outlined' />
+                <TextField name='firstName' error={inputs.firstName === ''} helperText={ inputs.firstName === '' ? 'This field must not be empty' : '' } value={inputs.firstName} onChange={handleChange} label="Firstname" variant='outlined' />
               </Grid>
               <Grid item>
-                <TextField name='lastName' value={inputs.lastName} onChange={handleChange} label="Lastname" variant='outlined' />
+                <TextField name='lastName' error={inputs.lastName === ''} helperText={ inputs.lastName === '' ? 'This field must not be empty' : '' } value={inputs.lastName} onChange={handleChange} label="Lastname" variant='outlined' />
               </Grid>
             </Grid>
             <Grid container style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
               <Grid item>
-                <TextField name='email' value={inputs.email} onChange={handleChange} label="Email" variant='outlined' />
+                <TextField name='email'  error={inputs.email === ''} helperText={ inputs.email === '' ? 'This field must not be empty' : '' } value={inputs.email} onChange={handleChange} label="Email" variant='outlined' />
               </Grid>
               <Grid item>
                 <TextField name='dateOfBirth' value={inputs.dateOfBirth} onChange={handleChange} label="Date of birth" type='date' defaultValue="1999-06-11" variant='outlined' />
@@ -42,10 +42,10 @@ const Register = () => {
             </Grid>
             <Grid style={{ marginBottom: '20px' }} justifyContent="center" container spacing={2}>
               <Grid item>
-                <TextField name='password' value={inputs.password} onChange={handleChange} label="Password" type="password" variant='outlined' />
+                <TextField name='password' error={inputs.password === '' || inputs.password !== inputs.passwordRepeat} helperText={ inputs.password === '' ? 'This field must not be empty' : '' || inputs.password !== inputs.passwordRepeat ? 'Passwords do not match' : '' } value={inputs.password} onChange={handleChange} label="Password" type="password" variant='outlined' />
               </Grid>
               <Grid item>
-                <TextField name='passwordRepeat' value={inputs.passwordRepeat} onChange={handleChange} label="Repeat password" type="password" variant='outlined' />
+                <TextField name='passwordRepeat' error={inputs.passwordRepeat === ''} helperText={ inputs.passwordRepeat === '' ? 'This field must not be empty' : '' } value={inputs.passwordRepeat} onChange={handleChange} label="Repeat password" type="password" variant='outlined' />
               </Grid>
             </Grid>
             <Grid alignItems="center" direction="column" spacing={0} justifyContent="center" container>
