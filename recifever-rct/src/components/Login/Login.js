@@ -28,10 +28,10 @@ const Login = () => {
           <form onSubmit={loginFormSubmit}>
             <Grid container direction="column" style={{ marginBottom: '20px' }} justifyContent="center" spacing={2}>
               <Grid item>
-                <TextField name='email' value={inputs.email} onChange={handleChange} label='Email' variant='outlined' />
+                <TextField error={inputs.email === ''} helperText={ inputs.email === '' ? 'This field must not be empty' : '' } name='email' value={inputs.email} onChange={handleChange} label='Email' variant='outlined' />
               </Grid>
               <Grid item>
-                <TextField name='password' value={inputs.password} onChange={handleChange} type='password' label='Password' variant='outlined' />
+                <TextField name='password' error={inputs.password === ''} helperText={ inputs.password === '' ? 'This field must not be empty' : '' } value={inputs.password} onChange={handleChange} type='password' label='Password' variant='outlined' />
               </Grid>
             </Grid>
             <Grid container spacing={2} justifyContent="center" alignContent="center">
