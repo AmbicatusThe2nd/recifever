@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Recipe.module.css';
 import Navbar from '../Navbar/Navbar';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import { width } from '@mui/system';
-import { Grid } from '@mui/material';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 
 const pictures = [
@@ -24,6 +22,17 @@ const Recipe = () => {
           <h1> Recipe Title </h1>
         </div>
         <div className={styles.Recipe} data-testid="Recipe">
+          <Carousel showThumbs={false} showArrows={false} showStatus={false}>
+                <div>
+                    <img src={pictures[0]} style={{ maxWidth: '900px' }}  />
+                </div>
+                <div>
+                    <img src={pictures[1]} style={{ maxWidth: '900px' }} />
+                </div>
+                <div>
+                    <img src={pictures[2]} style={{ maxWidth: '900px' }} />
+                </div>
+            </Carousel>
         </div>
       </div>
     </>
