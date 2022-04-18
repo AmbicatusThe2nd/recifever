@@ -5,6 +5,7 @@ import NotFound from './components/NotFound/NotFound';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Add_new from './components/Add_new/Add_new';
+import Recipe from './components/Recipe/Recipe';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           } />
           <Route path='*' element={
             <NotFound />
+          } />
+          <Route exact path="/recipe/:recipeId" element={
+            <Recipe />
           } />
         </Routes>
       </div>
