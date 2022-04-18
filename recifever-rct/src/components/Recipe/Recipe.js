@@ -5,6 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { width } from '@mui/system';
+import { Grid } from '@mui/material';
 
 
 const pictures = [
@@ -17,26 +18,12 @@ const pictures = [
 const Recipe = () => {
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className='component-content'>
-        <div className={styles.Recipe} data-testid="Recipe">
+        <div className={styles.RecipeTitle}>
           <h1> Recipe Title </h1>
-          <ImageList sx={{ width: 1300, height: 450 }} variant='woven' cols={1}>
-            {
-              pictures.map((item, index) => {
-                return (
-                  <img
-                    src={ item }
-                    srcSet={ item }
-                    alt={ index + 1 }
-                    loading='lazy'
-                    style={{ objectFit: 'cover', width: '1280px', height: '450px'}}
-
-                  />
-                )
-              })
-            }
-          </ImageList>
+        </div>
+        <div className={styles.Recipe} data-testid="Recipe">
         </div>
       </div>
     </>
