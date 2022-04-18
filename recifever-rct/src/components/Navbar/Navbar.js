@@ -58,10 +58,12 @@ const Navbar = () => {
           >
             Recifever React
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to="/add-new" key={page}>
                 <Button
+                key={page}
+                component={Link}
+                to="/add-new"
                 variant="contained"
                 color="secondary"
                 onClick={handleCloseNavMenu}
@@ -69,7 +71,7 @@ const Navbar = () => {
               >
                 {page}
               </Button>
-              </Link>
+              
             ))}
           </Box>
 
