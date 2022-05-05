@@ -23,16 +23,16 @@ const Recipe = () => {
         </div>
         <div className={styles.Recipe} data-testid="Recipe">
           <Carousel showThumbs={false} showArrows={false} showStatus={false}>
-                <div>
-                    <img src={pictures[0]} style={{ maxWidth: '900px' }}  />
-                </div>
-                <div>
-                    <img src={pictures[1]} style={{ maxWidth: '900px' }} />
-                </div>
-                <div>
-                    <img src={pictures[2]} style={{ maxWidth: '900px' }} />
-                </div>
-            </Carousel>
+            {
+              pictures.map((element, index) => {
+                return (
+                  <div key={index.toString()}>
+                    <img src={element} style={{ maxWidth: '900px' }} />
+                  </div>
+                )
+              })
+            }
+          </Carousel>
         </div>
       </div>
     </>
