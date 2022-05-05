@@ -43,21 +43,56 @@ const Recipe = () => {
           <AppBar position='static' color='secondary' enableColorOnDark>
             <Container maxWidth='xl'>
               <Toolbar disableGutters>
-                <AccountCircleIcon />
+                <Box display='flex' sx={{ flexGrow: 1 }}>
+                  <AccountCircleIcon />
+                  <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                  >
+                    Author Account
+                  </Typography>
+                </Box>
+                <AccessTimeIcon />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
                 >
-                  Author Account
+                  20min
                 </Typography>
-                <Box sx={{ flexGrow: 0 }}>
-                  <AccessTimeIcon />
-                  <TimerIcon />
-                  <LunchDining />
-                  <StarIcon />
-                  <EggAltIcon />
-                </Box>
+                <TimerIcon />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                >
+                  20min
+                </Typography>
+                <LunchDining />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                >
+                  300cal
+                </Typography>
+                <StarIcon />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                >
+                  1/5
+                </Typography>
+                <EggAltIcon />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                >
+                  Breakfest
+                </Typography>
               </Toolbar>
             </Container>
           </AppBar>
