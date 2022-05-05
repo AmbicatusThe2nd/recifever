@@ -27,7 +27,7 @@ const Recipe = () => {
               pictures.map((element, index) => {
                 return (
                   <div key={index.toString()}>
-                    <img src={element} style={{ maxWidth: '900px' }} />
+                    <img src={element} style={{ maxWidth: '900px', maxHeight:'350px' }} />
                   </div>
                 )
               })
