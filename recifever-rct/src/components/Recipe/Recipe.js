@@ -4,6 +4,13 @@ import styles from './Recipe.module.css';
 import Navbar from '../Navbar/Navbar';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { AppBar, Box, Container, IconButton, Toolbar, Typography } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import TimerIcon from '@mui/icons-material/Timer'
+import LunchDining from '@mui/icons-material/LunchDining';
+import StarIcon from '@mui/icons-material/Star'
+import EggAltIcon from '@mui/icons-material/EggAlt';
 
 
 const pictures = [
@@ -27,12 +34,33 @@ const Recipe = () => {
               pictures.map((element, index) => {
                 return (
                   <div key={index.toString()}>
-                    <img src={element} style={{ maxWidth: '900px', maxHeight:'350px' }} />
+                    <img src={element} style={{ maxWidth: '900px', maxHeight: '350px' }} />
                   </div>
                 )
               })
             }
           </Carousel>
+          <AppBar position='static' color='secondary' enableColorOnDark>
+            <Container maxWidth='xl'>
+              <Toolbar disableGutters>
+                <AccountCircleIcon />
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                >
+                  Author Account
+                </Typography>
+                <Box sx={{ flexGrow: 0 }}>
+                  <AccessTimeIcon />
+                  <TimerIcon />
+                  <LunchDining />
+                  <StarIcon />
+                  <EggAltIcon />
+                </Box>
+              </Toolbar>
+            </Container>
+          </AppBar>
         </div>
       </div>
     </>
