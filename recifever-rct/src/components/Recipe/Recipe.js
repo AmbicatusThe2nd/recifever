@@ -11,7 +11,29 @@ import TimerIcon from '@mui/icons-material/Timer'
 import LunchDining from '@mui/icons-material/LunchDining';
 import StarIcon from '@mui/icons-material/Star'
 import EggAltIcon from '@mui/icons-material/EggAlt';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
+
+function createStaticRecipes(ingredient, ammount, measurment) {
+  return { ingredient, ammount, measurment }
+}
+
+const ingredientRows = [
+  createStaticRecipes('Sugar', 2, 'Cups'),
+  createStaticRecipes('Sugar', 2, 'Cups'),
+  createStaticRecipes('Sugar', 2, 'Cups'),
+  createStaticRecipes('Sugar', 2, 'Cups'),
+  createStaticRecipes('Sugar', 2, 'Cups'),
+  createStaticRecipes('Sugar', 2, 'Cups'),
+  createStaticRecipes('Sugar', 2, 'Cups'),
+  createStaticRecipes('Sugar', 2, 'Cups'),
+]
 
 const pictures = [
   'https://net-tv.si/wp-content/uploads/2020/04/jjjjjj-1.jpg',
@@ -19,6 +41,8 @@ const pictures = [
   'https://www.nkmaribor.com/Img/Novice/0910//DSC_2812_tonemapped_4.jpg',
   'https://www.mercatorgroup.si/assets/Uploads/_resampled/ResizedImageWzY4Niw0NDZd/Skupinska-MB.jpg'
 ]
+
+
 
 const Recipe = () => {
   return (
@@ -96,6 +120,31 @@ const Recipe = () => {
               </Toolbar>
             </Container>
           </AppBar>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple-table">
+              <TableHead>
+                <TableRow>
+                  <TableCell> Ingredient </TableCell>
+                  <TableCell> Ammount </TableCell>
+                  <TableCell> Cup </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {
+                  ingredientRows.map((row) => (
+                    <TableRow
+                      key={row.ingredient}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell> { row.ingredient } </TableCell>
+                      <TableCell> { row.ammount } </TableCell>
+                      <TableCell> { row.measurment } </TableCell>
+                    </TableRow>
+                  ))
+                }
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       </div>
     </>
