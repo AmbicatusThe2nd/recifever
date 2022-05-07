@@ -24,6 +24,10 @@ function createStaticRecipes(ingredient, ammount, measurment) {
   return { ingredient, ammount, measurment }
 }
 
+function createStaticSteps(step) {
+  return { step }
+}
+
 const ingredientRows = [
   createStaticRecipes('Sugar', 2, 'Cups'),
   createStaticRecipes('Sugar', 2, 'Cups'),
@@ -33,6 +37,17 @@ const ingredientRows = [
   createStaticRecipes('Sugar', 2, 'Cups'),
   createStaticRecipes('Sugar', 2, 'Cups'),
   createStaticRecipes('Sugar', 2, 'Cups'),
+]
+
+const steps = [
+  createStaticSteps('Lorem ipsum'),
+  createStaticSteps('Lorem ipsum'),
+  createStaticSteps('Lorem ipsum'),
+  createStaticSteps('Lorem ipsum'),
+  createStaticSteps('Lorem ipsum'),
+  createStaticSteps('Lorem ipsum'),
+  createStaticSteps('Lorem ipsum'),
+  createStaticSteps('Lorem ipsum'),
 ]
 
 const pictures = [
@@ -127,7 +142,7 @@ const Recipe = () => {
           </AppBar>
           <div style={{ margin: '20px', minWidth: '50px' }}>
             <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple-table">
+              <Table sx={{ minWidth: 250 }} aria-label="simple-table">
                 <TableHead>
                   <TableRow>
                     <TableCell style={{ fontWeight: 'bold' }}> Ingredient </TableCell>
@@ -145,6 +160,31 @@ const Recipe = () => {
                         <TableCell> {row.ingredient} </TableCell>
                         <TableCell> {row.ammount} </TableCell>
                         <TableCell> {row.measurment} </TableCell>
+                      </TableRow>
+                    ))
+                  }
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+          <div style={{ margin: '20px', minWidth: '50px' }}>
+          <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 250 }} aria-label="simple-table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: 'bold' }}> No. </TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }}> Step </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    steps.map((row, index) => (
+                      <TableRow
+                        key={row.ingredient}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                      >
+                        <TableCell> { ++index } </TableCell>
+                        <TableCell> {row.step} </TableCell>
                       </TableRow>
                     ))
                   }
