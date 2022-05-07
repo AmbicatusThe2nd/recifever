@@ -68,7 +68,7 @@ const Recipe = () => {
             <Container maxWidth='xl'>
               <Toolbar disableGutters>
                 <Box display='flex' sx={{ flexGrow: 1 }}>
-                  <AccountCircleIcon />
+                  <AccountCircleIcon style={{ marginRight: '5px' }} />
                   <Typography
                     variant="h6"
                     noWrap
@@ -77,74 +77,81 @@ const Recipe = () => {
                     Author Account
                   </Typography>
                 </Box>
-                <AccessTimeIcon />
+                <AccessTimeIcon style={{ marginRight: '5px' }}  />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
+                  style={{ marginRight: '5px' }} 
                 >
                   20min
                 </Typography>
-                <TimerIcon />
+                <TimerIcon style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
+                  style={{ marginRight: '5px' }} 
                 >
                   20min
                 </Typography>
-                <LunchDining />
+                <LunchDining style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
+                  style={{ marginRight: '5px' }} 
                 >
                   300cal
                 </Typography>
-                <StarIcon />
+                <StarIcon style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
+                  style={{ marginRight: '5px' }} 
                 >
                   1/5
                 </Typography>
-                <EggAltIcon />
+                <EggAltIcon style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
+                  style={{ marginRight: '5px' }} 
                 >
                   Breakfest
                 </Typography>
               </Toolbar>
             </Container>
           </AppBar>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple-table">
-              <TableHead>
-                <TableRow>
-                  <TableCell style={{ fontWeight: 'bold' }}> Ingredient </TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}> Ammount </TableCell>
-                  <TableCell style={{ fontWeight: 'bold' }}> Measurment </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {
-                  ingredientRows.map((row) => (
-                    <TableRow
-                      key={row.ingredient}
-                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                    >
-                      <TableCell> { row.ingredient } </TableCell>
-                      <TableCell> { row.ammount } </TableCell>
-                      <TableCell> { row.measurment } </TableCell>
-                    </TableRow>
-                  ))
-                }
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <div style={{ margin: '20px', minWidth: '50px' }}>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple-table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell style={{ fontWeight: 'bold' }}> Ingredient </TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }}> Ammount </TableCell>
+                    <TableCell style={{ fontWeight: 'bold' }}> Measurment </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {
+                    ingredientRows.map((row) => (
+                      <TableRow
+                        key={row.ingredient}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                      >
+                        <TableCell> {row.ingredient} </TableCell>
+                        <TableCell> {row.ammount} </TableCell>
+                        <TableCell> {row.measurment} </TableCell>
+                      </TableRow>
+                    ))
+                  }
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
       </div>
     </>
