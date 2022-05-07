@@ -124,9 +124,9 @@ const Recipe = () => {
             <Table sx={{ minWidth: 650 }} aria-label="simple-table">
               <TableHead>
                 <TableRow>
-                  <TableCell> Ingredient </TableCell>
-                  <TableCell> Ammount </TableCell>
-                  <TableCell> Cup </TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }}> Ingredient </TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }}> Ammount </TableCell>
+                  <TableCell style={{ fontWeight: 'bold' }}> Measurment </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
