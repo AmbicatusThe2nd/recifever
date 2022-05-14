@@ -3,6 +3,7 @@ import styles from './Home.module.css';
 import Navbar from '../Navbar/Navbar';
 import { Grid } from '@mui/material';
 import CustomCard from '../CustomCard/CustomCard';
+import { RecipeService } from '../../services/RecipeService';
 
 const Home = () => (
   <>
