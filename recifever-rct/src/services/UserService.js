@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'This is a place holder url';
+const url = 'https://localhost:7021/api/User';
 
 export function getAllUsers() {
     const result = axios.get(url).then((response) => {

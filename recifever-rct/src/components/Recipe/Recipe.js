@@ -67,6 +67,7 @@ const Recipe = () => {
   const recipeId = window.location.href.split('/').pop();
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     getSpecificRecipe(recipeId).then((result) => {
@@ -75,6 +76,16 @@ const Recipe = () => {
     .catch(() => {
       navigate('*');
     })
+
+    if (recipe.userID) {
+      getSpecificUser(recipe.userID).then((result) => {
+        setUser(result)
+      })
+      .catch(() => {
+        navigate('*');
+      })
+    } 
+
   }, [recipe.id])
 
   return (
@@ -106,7 +117,7 @@ const Recipe = () => {
                     noWrap
                     component="div"
                   >
-                    Author Account
+                    { `${user.firstName} ${user.lastName}` }
                   </Typography>
                 </Box>
                 <AccessTimeIcon style={{ marginRight: '5px' }}  />
