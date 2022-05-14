@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import styles from './Recipe.module.css';
 import Navbar from '../Navbar/Navbar';
@@ -18,6 +18,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { getSpecificRecipe } from '../../services/RecipeService';
+import { getSpecificUser } from '../../services/UserService';
 
 
 function createStaticRecipes(ingredient, ammount, measurment) {
