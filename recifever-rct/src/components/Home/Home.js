@@ -29,6 +29,7 @@ const Home = () => {
                       Title={recipe.title}
                       Summery={`Make it for: ${recipe.dailyMeal}`}
                       ImagePath={recipe.photos.shift()}
+                      RecipeId={recipe.id}
                     />
                   </Grid>
                 )

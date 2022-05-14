@@ -28,9 +28,10 @@ const CustomCard = (props) => (
 );
 
 CustomCard.propTypes = {
-  Title: PropTypes.string,
-  Summery: PropTypes.string,
-  ImagePath: PropTypes.string
+  Title: PropTypes.string.isRequired,
+  Summery: PropTypes.string.isRequired,
+  ImagePath: PropTypes.string.isRequired,
+  RecipeId: PropTypes.string.isRequired,
 };
 
 CustomCard.defaultProps = {};
