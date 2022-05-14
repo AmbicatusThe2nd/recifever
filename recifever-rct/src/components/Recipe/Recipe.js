@@ -98,7 +98,7 @@ const Recipe = () => {
         <div className={styles.Recipe} data-testid="Recipe">
           <Carousel showThumbs={false} showArrows={false} showStatus={false}>
             {
-              pictures.map((element, index) => {
+              recipe.photos.map((element, index) => {
                 return (
                   <div key={index.toString()}>
                     <img src={element} style={{ maxWidth: '900px', maxHeight: '350px' }} />
