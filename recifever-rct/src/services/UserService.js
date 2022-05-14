@@ -35,5 +35,9 @@ export function updateUser(id, userDetails) {
 }
 
 export function deleteUser(id) {
-    // TODO: Implement
+    const result = axios.delete(`${url}/${id}`).then((response) => {
+        return response.data;
+    })
+
+    return result;
 }
