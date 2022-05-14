@@ -77,7 +77,7 @@ const Recipe = () => {
       <Navbar />
       <div className='component-content'>
         <div className={styles.RecipeTitle}>
-          <h1> Recipe Title </h1>
+          <h1> { recipe.title } </h1>
         </div>
         <div className={styles.Recipe} data-testid="Recipe">
           <Carousel showThumbs={false} showArrows={false} showStatus={false}>
@@ -111,7 +111,7 @@ const Recipe = () => {
                   component="div"
                   style={{ marginRight: '5px' }} 
                 >
-                  20min
+                  { `${recipe.preperationTime} min` }
                 </Typography>
                 <TimerIcon style={{ marginRight: '5px' }} />
                 <Typography
@@ -120,7 +120,7 @@ const Recipe = () => {
                   component="div"
                   style={{ marginRight: '5px' }} 
                 >
-                  20min
+                  { `${recipe.cookingTime} min` }
                 </Typography>
                 <LunchDining style={{ marginRight: '5px' }} />
                 <Typography
@@ -129,7 +129,7 @@ const Recipe = () => {
                   component="div"
                   style={{ marginRight: '5px' }} 
                 >
-                  300cal
+                  { `${recipe.calories} cal` }
                 </Typography>
                 <StarIcon style={{ marginRight: '5px' }} />
                 <Typography
@@ -138,7 +138,7 @@ const Recipe = () => {
                   component="div"
                   style={{ marginRight: '5px' }} 
                 >
-                  1/5
+                  {`${recipe.difficulty}/5`}
                 </Typography>
                 <EggAltIcon style={{ marginRight: '5px' }} />
                 <Typography
@@ -147,7 +147,7 @@ const Recipe = () => {
                   component="div"
                   style={{ marginRight: '5px' }} 
                 >
-                  Breakfest
+                  {`${recipe.dailyMeal}`}
                 </Typography>
               </Toolbar>
             </Container>
@@ -164,13 +164,14 @@ const Recipe = () => {
                 </TableHead>
                 <TableBody>
                   {
-                    ingredientRows.map((row) => (
+                    recipe.ingredients.map((ingredient, index) => (
                       <TableRow
+                        key={`Ingredient ${++index}`}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
-                        <TableCell> {row.ingredient} </TableCell>
-                        <TableCell> {row.ammount} </TableCell>
-                        <TableCell> {row.measurment} </TableCell>
+                        <TableCell> {ingredient.ingredient} </TableCell>
+                        <TableCell> {ingredient.amount} </TableCell>
+                        <TableCell> {ingredient.measurement} </TableCell>
                       </TableRow>
                     ))
                   }
@@ -189,13 +190,13 @@ const Recipe = () => {
                 </TableHead>
                 <TableBody>
                   {
-                    steps.map((row, index) => (
+                    recipe.steps.map((row, index) => (
                       <TableRow
-                        key={row.ingredient}
+                        key={`Step ${index}`}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
                         <TableCell> { ++index } </TableCell>
-                        <TableCell> {row.step} </TableCell>
+                        <TableCell> {row} </TableCell>
                       </TableRow>
                     ))
                   }
