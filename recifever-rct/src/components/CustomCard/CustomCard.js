@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './CustomCard.module.css';
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
@@ -21,7 +22,7 @@ const CustomCard = (props) => (
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small' variant="outlined" color='primary'> More </Button>
+        <Button component={Link} to={ `/recipe/${ props.RecipeId }` } size='small' variant="outlined" color='primary'> More </Button>
       </CardActions>
     </Card>
   </div>
