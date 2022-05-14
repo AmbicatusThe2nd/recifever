@@ -20,6 +20,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { getSpecificRecipe } from '../../services/RecipeService';
 import { getSpecificUser } from '../../services/UserService';
+import { Navigate } from 'react-router-dom';
 
 
 function createStaticRecipes(ingredient, ammount, measurment) {
@@ -68,9 +69,9 @@ const Recipe = () => {
 
   useEffect(() => {
     getSpecificRecipe(recipeId).then((result) => {
-      setRecipe(result);
+     setRecipe(result);
     })
-  })
+  }, [recipe.id])
 
   return (
     <>
@@ -164,7 +165,7 @@ const Recipe = () => {
                 </TableHead>
                 <TableBody>
                   {
-                    recipe.ingredients.map((ingredient, index) => (
+                    recipe.ingredients?.map((ingredient, index) => (
                       <TableRow
                         key={`Ingredient ${++index}`}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -190,7 +191,7 @@ const Recipe = () => {
                 </TableHead>
                 <TableBody>
                   {
-                    recipe.steps.map((row, index) => (
+                    recipe.steps?.map((row, index) => (
                       <TableRow
                         key={`Step ${index}`}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
