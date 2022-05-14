@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'This is a place holder url';
+const url = 'https://localhost:7021/api/Recipe';
 
 export function getAllRecipes() {
     const result = axios.get(url).then((response) => {
