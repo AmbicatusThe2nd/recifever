@@ -3,7 +3,11 @@ import axios from 'axios';
 const url = 'This is a place holder url';
 
 export function getAllUsers() {
-    // TODO: Implement
+    const result = axios.get(url).then((response) => {
+        return response.data;
+    })
+
+    return result;
 }
 
 export function getSpecificUser(id) {
