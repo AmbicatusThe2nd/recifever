@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { GetJwt } from '../../services/LoginService';
 
 const Login = () => {
   const [inputs, setInputs] = useState({});
@@ -18,6 +19,11 @@ const Login = () => {
   const loginFormSubmit = (event) => {
     event.preventDefault();
     console.log(inputs);
+    GetJwt(inputs).then((response) => {
+      console.log(response.data);
+    }).catch(() => {
+      console.log('Wrong login'); // Fix this when ready
+    })
   }
 
   return (
