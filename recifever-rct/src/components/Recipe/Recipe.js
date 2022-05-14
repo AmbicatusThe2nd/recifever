@@ -62,6 +62,16 @@ const pictures = [
 
 
 const Recipe = () => {
+
+  const recipeId = window.location.href.split('/').pop();
+  const [recipe, setRecipe] = useState({});
+
+  useEffect(() => {
+    getSpecificRecipe(recipeId).then((result) => {
+      setRecipe(result);
+    })
+  })
+
   return (
     <>
       <Navbar />
@@ -156,7 +166,6 @@ const Recipe = () => {
                   {
                     ingredientRows.map((row) => (
                       <TableRow
-                        key={row.ingredient}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
                         <TableCell> {row.ingredient} </TableCell>
