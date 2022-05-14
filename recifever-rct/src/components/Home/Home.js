@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Home.module.css';
 import Navbar from '../Navbar/Navbar';
 import { Grid } from '@mui/material';
 import CustomCard from '../CustomCard/CustomCard';
-import { RecipeService } from '../../services/RecipeService';
+import { getAllRecipes } from '../../services/RecipeService';
 
 const Home = () => {
+
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    getAllRecipes().then((result) => {
+      setRecipes(result);
+    })
+  });
+
   return (
     <>
       <Navbar />
