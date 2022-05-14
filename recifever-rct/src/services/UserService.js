@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const url = 'This is a place holder url';
+
 export function getAllUsers() {
     // TODO: Implement
 }
