@@ -20,7 +20,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { getSpecificRecipe } from '../../services/RecipeService';
 import { getSpecificUser } from '../../services/UserService';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function createStaticRecipes(ingredient, ammount, measurment) {
@@ -65,11 +65,15 @@ const pictures = [
 const Recipe = () => {
 
   const recipeId = window.location.href.split('/').pop();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
     getSpecificRecipe(recipeId).then((result) => {
      setRecipe(result);
+    })
+    .catch(() => {
+      navigate('*');
     })
   }, [recipe.id])
 
