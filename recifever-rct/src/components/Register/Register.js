@@ -3,8 +3,11 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, TextField, Grid } from '@mui/material';
 import styles from './Register.module.css';
+import { addUser } from '../../services/UserService';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -16,6 +19,9 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(inputs);
+    addUser(inputs).then(() => {
+      navigate('login'); // Fix this
+    })
   }
 
   return (
