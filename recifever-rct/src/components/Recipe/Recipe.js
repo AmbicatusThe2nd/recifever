@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Recipe.module.css';
 import Navbar from '../Navbar/Navbar';
@@ -22,46 +22,6 @@ import { getSpecificRecipe } from '../../services/RecipeService';
 import { getSpecificUser } from '../../services/UserService';
 import { useNavigate } from 'react-router-dom';
 
-
-function createStaticRecipes(ingredient, ammount, measurment) {
-  return { ingredient, ammount, measurment }
-}
-
-function createStaticSteps(step) {
-  return { step }
-}
-
-const ingredientRows = [
-  createStaticRecipes('Sugar', 2, 'Cups'),
-  createStaticRecipes('Sugar', 2, 'Cups'),
-  createStaticRecipes('Sugar', 2, 'Cups'),
-  createStaticRecipes('Sugar', 2, 'Cups'),
-  createStaticRecipes('Sugar', 2, 'Cups'),
-  createStaticRecipes('Sugar', 2, 'Cups'),
-  createStaticRecipes('Sugar', 2, 'Cups'),
-  createStaticRecipes('Sugar', 2, 'Cups'),
-]
-
-const steps = [
-  createStaticSteps('Lorem ipsum'),
-  createStaticSteps('Lorem ipsum'),
-  createStaticSteps('Lorem ipsum'),
-  createStaticSteps('Lorem ipsum'),
-  createStaticSteps('Lorem ipsum'),
-  createStaticSteps('Lorem ipsum'),
-  createStaticSteps('Lorem ipsum'),
-  createStaticSteps('Lorem ipsum'),
-]
-
-const pictures = [
-  'https://net-tv.si/wp-content/uploads/2020/04/jjjjjj-1.jpg',
-  'https://i.goalzz.com/?i=reuters%2F2017-11-01%2F2017-11-01t195332z_1816153601_rc1afe2cb930_rtrmadp_3_soccer-champions-liv-mar_reuters.jpg',
-  'https://www.nkmaribor.com/Img/Novice/0910//DSC_2812_tonemapped_4.jpg',
-  'https://www.mercatorgroup.si/assets/Uploads/_resampled/ResizedImageWzY4Niw0NDZd/Skupinska-MB.jpg'
-]
-
-
-
 const Recipe = () => {
 
   const recipeId = window.location.href.split('/').pop();
@@ -71,20 +31,20 @@ const Recipe = () => {
 
   useEffect(() => {
     getSpecificRecipe(recipeId).then((result) => {
-     setRecipe(result);
+      setRecipe(result);
     })
-    .catch(() => {
-      navigate('*');
-    })
+      .catch(() => {
+        navigate('*');
+      })
 
     if (recipe.userID) {
       getSpecificUser(recipe.userID).then((result) => {
         setUser(result)
       })
-      .catch(() => {
-        navigate('*');
-      })
-    } 
+        .catch(() => {
+          navigate('*');
+        })
+    }
 
   }, [recipe.id])
 
@@ -93,12 +53,12 @@ const Recipe = () => {
       <Navbar />
       <div className='component-content'>
         <div className={styles.RecipeTitle}>
-          <h1> { recipe.title } </h1>
+          <h1> {recipe.title} </h1>
         </div>
         <div className={styles.Recipe} data-testid="Recipe">
           <Carousel showThumbs={false} showArrows={false} showStatus={false}>
             {
-              recipe.photos.map((element, index) => {
+              recipe.photos?.map((element, index) => {
                 return (
                   <div key={index.toString()}>
                     <img src={element} style={{ maxWidth: '900px', maxHeight: '350px' }} />
@@ -117,42 +77,42 @@ const Recipe = () => {
                     noWrap
                     component="div"
                   >
-                    { `${user.firstName} ${user.lastName}` }
+                    {`${user.firstName} ${user.lastName}`}
                   </Typography>
                 </Box>
-                <AccessTimeIcon style={{ marginRight: '5px' }}  />
+                <AccessTimeIcon style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
-                  style={{ marginRight: '5px' }} 
+                  style={{ marginRight: '5px' }}
                 >
-                  { `${recipe.preperationTime} min` }
+                  {`${recipe.preperationTime} min`}
                 </Typography>
                 <TimerIcon style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
-                  style={{ marginRight: '5px' }} 
+                  style={{ marginRight: '5px' }}
                 >
-                  { `${recipe.cookingTime} min` }
+                  {`${recipe.cookingTime} min`}
                 </Typography>
                 <LunchDining style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
-                  style={{ marginRight: '5px' }} 
+                  style={{ marginRight: '5px' }}
                 >
-                  { `${recipe.calories} cal` }
+                  {`${recipe.calories} cal`}
                 </Typography>
                 <StarIcon style={{ marginRight: '5px' }} />
                 <Typography
                   variant="h6"
                   noWrap
                   component="div"
-                  style={{ marginRight: '5px' }} 
+                  style={{ marginRight: '5px' }}
                 >
                   {`${recipe.difficulty}/5`}
                 </Typography>
@@ -161,7 +121,7 @@ const Recipe = () => {
                   variant="h6"
                   noWrap
                   component="div"
-                  style={{ marginRight: '5px' }} 
+                  style={{ marginRight: '5px' }}
                 >
                   {`${recipe.dailyMeal}`}
                 </Typography>
@@ -196,7 +156,7 @@ const Recipe = () => {
             </TableContainer>
           </div>
           <div style={{ margin: '20px', minWidth: '50px' }}>
-          <TableContainer component={Paper}>
+            <TableContainer component={Paper}>
               <Table sx={{ minWidth: 250 }} aria-label="simple-table">
                 <TableHead>
                   <TableRow>
@@ -211,7 +171,7 @@ const Recipe = () => {
                         key={`Step ${index}`}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                       >
-                        <TableCell> { ++index } </TableCell>
+                        <TableCell> {++index} </TableCell>
                         <TableCell> {row} </TableCell>
                       </TableRow>
                     ))
