@@ -19,11 +19,19 @@ export function getSpecificUser(id) {
 }
 
 export function addUser(userDetails) {
-    // TODO: Implement
+    const result = axios.post(url, userDetails).then((response) => {
+        return response;
+    })
+
+    return result;
 }
 
 export function updateUser(id, userDetails) {
-    // TODO: Implement
+    const result = axios.put(`${url}/${id}`, userDetails).then((response) => {
+        return response;
+    })
+
+    return result;
 }
 
 export function deleteUser(id) {
