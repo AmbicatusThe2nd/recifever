@@ -11,14 +11,18 @@ export function getAllUsers() {
 }
 
 export function getSpecificUser(id) {
-    // TODO: Implement
+    const result = axios.get(`${url}/${id}`).then((response) => {
+        return response.data;
+    })
+
+    return result;
 }
 
 export function addUser(userDetails) {
     // TODO: Implement
 }
 
-export function updateUser(userDetails) {
+export function updateUser(id, userDetails) {
     // TODO: Implement
 }
 
