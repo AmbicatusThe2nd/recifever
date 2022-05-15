@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/Home/Home';
 import NotFound from './components/NotFound/NotFound';
 import Login from './components/Login/Login';
@@ -12,28 +12,29 @@ function App() {
 
   const { token, setToken } = useToken();
 
+  let AppRoutes = (
+    <>
+      <Route exact path="/" element={<Home />} />
+      <Route exact path="/add-new" element={<Add_new />} />
+      <Route exact path="/recipe/:recipeId" element={<Recipe />} />
+      <Route path='*' element={<NotFound />} />
+    </>
+  )
+
+  if (!token) {
+    AppRoutes = (
+      <>
+        <Route exact path="/login" element={<Login setToken={setToken} />} />
+        <Route exact path="/register" element={<Register />} />
+      </>
+    )
+  }
+
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={
-            <Home />
-          } />
-          <Route exact path="/add-new" element={
-            <Add_new />
-          } />
-          <Route exact path="/login" element={
-            <Login setToken={ setToken } />
-          } />
-          <Route exact path="/register" element={
-            <Register />
-          } />
-          <Route path='*' element={
-            <NotFound />
-          } />
-          <Route exact path="/recipe/:recipeId" element={
-            <Recipe />
-          } />
+          {AppRoutes}
         </Routes>
       </div>
     </Router>
