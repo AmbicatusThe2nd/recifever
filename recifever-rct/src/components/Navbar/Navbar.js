@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 
 const pages = ['Add new'];
@@ -82,7 +83,7 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title={ userData.userName }>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar > {
                   `${userData.userName.split(' ').shift()[0]}${userData.userName.split(' ').pop()[0]}`
