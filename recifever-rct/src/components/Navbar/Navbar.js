@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
+import jwtDecode from 'jwt-decode';
 
 
 const pages = ['Add new'];
@@ -22,6 +23,7 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { token, setToken } = useToken();
+  const userData = jwtDecode(token);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -80,7 +82,9 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar > {
+                  `${userData.userName.split(' ').shift()[0]}${userData.userName.split(' ').pop()[0]}`
+                } </ Avatar>
               </IconButton>
             </Tooltip>
             <Menu
