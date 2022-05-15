@@ -7,9 +7,11 @@ import TextField from '@mui/material/TextField';
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { GetJwt } from '../../services/LoginService';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ setToken }) => {
   const [inputs, setInputs] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -23,6 +25,7 @@ const Login = ({ setToken }) => {
     GetJwt(inputs).then((response) => {
       console.log(response.data); // Delete this later
       setToken(response.data);
+      navigate('/');
     }).catch(() => {
       console.log('Wrong login'); // Fix this when ready
     })
