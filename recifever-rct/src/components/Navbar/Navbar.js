@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 
 const pages = ['Add new'];
@@ -20,6 +21,7 @@ const Navbar = () => {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { token, setToken } = useToken();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
