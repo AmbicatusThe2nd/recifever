@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import useToken from '../../hooks/useToken';
 import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 
 const pages = ['Add new'];
@@ -20,6 +21,7 @@ const settings = ['Profile', 'Logout'];
 
 const Navbar = () => {
 
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { token, setToken } = useToken();
@@ -40,6 +42,11 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const clickLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
 
   return (
     <AppBar position="static">
@@ -64,7 +71,7 @@ const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
             {pages.map((page) => (
-                <Button
+              <Button
                 key={page}
                 component={Link}
                 to="/add-new"
@@ -75,7 +82,7 @@ const Navbar = () => {
               >
                 {page}
               </Button>
-              
+
             ))}
           </Box>
 
@@ -103,11 +110,9 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography onClick={clickLogout} textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
