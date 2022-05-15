@@ -6,8 +6,12 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Add_new from './components/Add_new/Add_new';
 import Recipe from './components/Recipe/Recipe';
+import useToken from './hooks/useToken';
 
 function App() {
+
+  const { token, setToken } = useToken();
+
   return (
     <Router>
       <div className="App">
@@ -19,7 +23,7 @@ function App() {
             <Add_new />
           } />
           <Route exact path="/login" element={
-            <Login />
+            <Login setToken={ setToken } />
           } />
           <Route exact path="/register" element={
             <Register />
