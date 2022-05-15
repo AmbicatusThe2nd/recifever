@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styles from './Login.module.css';
 import Button from '@mui/material/Button';
@@ -7,7 +8,7 @@ import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { GetJwt } from '../../services/LoginService';
 
-const Login = () => {
+const Login = ({ setToken }) => {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -20,7 +21,8 @@ const Login = () => {
     event.preventDefault();
     console.log(inputs);
     GetJwt(inputs).then((response) => {
-      console.log(response.data);
+      console.log(response.data); // Delete this later
+      setToken(response.data);
     }).catch(() => {
       console.log('Wrong login'); // Fix this when ready
     })
@@ -55,7 +57,9 @@ const Login = () => {
   );
 }
 
-Login.propTypes = {};
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+};
 
 Login.defaultProps = {};
 
