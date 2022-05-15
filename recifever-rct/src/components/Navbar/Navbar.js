@@ -17,19 +17,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const pages = ['Add new'];
-const settings = ['Profile', 'Logout'];
 
 const Navbar = () => {
 
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const { token, setToken } = useToken();
+  const { token,  } = useToken();
   const userData = jwtDecode(token);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
